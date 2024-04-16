@@ -11,14 +11,15 @@ VULKAN_TOOLS_LICENSE_FILES = LICENSE.txt
 
 VULKAN_TOOLS_DEPENDENCIES = \
 	vulkan-headers \
-	vulkan-loader
+	vulkan-loader \
+	vulkan-volk
 
 VULKAN_TOOLS_CONF_OPTS += \
 	-DBUILD_CUBE=OFF \
 	-DBUILD_ICD=OFF \
 	-DBUILD_VULKANINFO=ON \
 	-DINSTALL_ICD=OFF \
-	-DUPDATE_DEPS=ON # batocera
+	#-DUPDATE_DEPS=ON # batocera
 
 ifeq ($(BR2_PACKAGE_DIRECTFB),y)
 VULKAN_TOOLS_DEPENDENCIES += directfb
