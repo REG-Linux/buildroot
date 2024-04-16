@@ -167,12 +167,6 @@ MESA3D_DEPENDENCIES += python3 host-glslang
 MESA3D_CONF_OPTS += -Dvulkan-layers=device-select,overlay
 endif
 
-# batocera - add Xe (Tigerlake and newer platforms)
-ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_IRIS),y)
-# REG mesa 24.0.5+ enable by default
-#MESA3D_CONF_OPTS += -Dintel-xe-kmd=enabled
-endif
-
 ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER),)
 MESA3D_CONF_OPTS += \
 	-Dgallium-drivers= \
