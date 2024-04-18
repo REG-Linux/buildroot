@@ -85,6 +85,11 @@ ifeq ($(BR2_PACKAGE_ROCKCHIP_RGA),y)
 SDL2_DEPENDENCIES += rockchip-rga
 endif
 
+# REG - RISC-V depend on custom mesa to enable wayland properly
+ifeq ($(BR2_PACKAGE_IMG_GPU_POWERVR),y)
+SDL_DEPENDENCIES += img-gpu-powervr img-mesa3d
+endif
+
 # batocera - use Pipewire audio
 ifeq ($(BR2_PACKAGE_PIPEWIRE),y)
 SDL2_CONF_OPTS += --enable-pipewire
