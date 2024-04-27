@@ -38,6 +38,32 @@ SDL2_CONF_OPTS += \
 	--disable-joystick-virtual \
 	--disable-render-d3d
 
+HOST_SDL2_CONF_OPTS += \
+	--disable-rpath \
+	--disable-arts \
+	--disable-esd \
+	--disable-dbus \
+	--disable-pulseaudio \
+	--disable-video-vivante \
+	--disable-video-cocoa \
+	--disable-video-metal \
+	--disable-video-dummy \
+	--disable-video-offscreen \
+	--disable-video-wayland \
+	--disable-video-x11 \
+	--disable-video-vulkan \
+	--disable-ime \
+	--disable-ibus \
+	--disable-fcitx \
+	--disable-joystick-mfi \
+	--disable-directx \
+	--disable-xinput \
+	--disable-wasapi \
+	--disable-hidapi-joystick \
+	--disable-hidapi-libusb \
+	--disable-joystick-virtual \
+	--disable-render-d3d
+
 # We are using autotools build system for sdl2, so the sdl2-config.cmake
 # include path are not resolved like for sdl2-config script.
 # Change the absolute /usr path to resolve relatively to the sdl2-config.cmake location.
@@ -239,3 +265,4 @@ SDL2_CONF_OPTS += --disable-video-vulkan
 endif
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))
