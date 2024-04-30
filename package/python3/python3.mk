@@ -22,13 +22,13 @@ HOST_PYTHON3_CONF_OPTS += \
 	--disable-sqlite3 \
 	--disable-tk \
 	--with-expat=system \
-	--disable-codecs-cjk \
 	--disable-nis \
 	--enable-unicodedata \
 	--disable-test-modules \
 	--disable-idle3 \
 	--disable-uuid \
 	--disable-ossaudiodev
+# REG	--disable-codecs-cjk \
 
 # Make sure that LD_LIBRARY_PATH overrides -rpath.
 # This is needed because libpython may be installed at the same time that
