@@ -243,6 +243,12 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SWRAST
 	  This is a software opengl implementation using the Gallium3D
 	  infrastructure.
 
+config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_LAVAPIPE
+	bool "Vulkan LLVM driver"
+	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER
+	help
+	  This is a software vulkan implementation using LLVM
+
 config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_TEGRA
 	bool "Gallium tegra driver"
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
