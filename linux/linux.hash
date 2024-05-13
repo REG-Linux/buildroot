@@ -1,4 +1,5 @@
 # From https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
+sha256  24fa01fb989c7a3e28453f117799168713766e119c5381dac30115f18f268149  linux-6.9.tar.xz
 sha256  b66a5b863b0f8669448b74ca83bd641a856f164b29956e539bbcb5fdeeab9cc6  linux-6.6.30.tar.xz
 sha256  83a3d72e764fceda2c1fc68a4ea6b91253a28da56a688a2b61776b0d19788e1d  linux-6.1.90.tar.xz
 # From https://www.kernel.org/pub/linux/kernel/v5.x/sha256sums.asc
