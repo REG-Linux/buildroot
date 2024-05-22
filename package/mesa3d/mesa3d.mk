@@ -3,16 +3,7 @@
 # mesa3d
 #
 ################################################################################
-# batocera (update) - patch 5 not needed
-# When updating the version, please also update mesa3d-headers
-# also update glslang to the latest stable version
-
-# RPi4/Panfrost workaround until - https://gitlab.freedesktop.org/mesa/mesa/-/issues/10306 fixed
-#ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_BCM2711)$(BR2_PACKAGE_BATOCERA_PANFROST_MESA3D),y)
-#    MESA3D_VERSION = 23.2.1
-#else
-    MESA3D_VERSION = 24.0.7
-#endif
+# reglinux (update)
 
 # Asahi Edge
 ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
@@ -20,6 +11,7 @@ MESA3D_VERSION = asahi-20240228
 MESA3D_SITE = https://gitlab.freedesktop.org/asahi/mesa
 MESA3D_SITE_METHOD = git
 else
+MESA3D_VERSION = 24.0.8
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
 endif
