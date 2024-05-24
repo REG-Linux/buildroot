@@ -6,15 +6,15 @@
 # reglinux (update)
 
 # Asahi Edge
-ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
-MESA3D_VERSION = asahi-20240228
-MESA3D_SITE = https://gitlab.freedesktop.org/asahi/mesa
-MESA3D_SITE_METHOD = git
-else
-MESA3D_VERSION = 24.0.8
+#ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
+#MESA3D_VERSION = asahi-20240228
+#MESA3D_SITE = https://gitlab.freedesktop.org/asahi/mesa
+#MESA3D_SITE_METHOD = git
+#else
+MESA3D_VERSION = 24.1.0
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
-endif
+#endif
 
 MESA3D_LICENSE = MIT, SGI, Khronos
 MESA3D_LICENSE_FILES = docs/license.rst
@@ -71,6 +71,12 @@ MESA3D_DEPENDENCIES += clang libclc
 MESA3D_CONF_OPTS += -Dgallium-opencl=standalone
 else
 MESA3D_CONF_OPTS += -Dgallium-opencl=disabled
+endif
+
+#REG: x86 builds require clang libclc and python-ply
+ifeq ($(BR2_x86_64),y)
+MESA3D_DEPENDENCIES += clang libclc host-python-ply
+#MESA3D_CONF_ENV += LD_LIBRARY_PATH=$(HOST_DIR)/usr/lib:$(TARGET_DIR)/lib:$(LD_LIBRARY_PATH) SYSROOT=$(STAGING_DIR)/usr
 endif
 
 #REG: asahi needs libclc spirv-tools and host-spirv-llvm-translator
