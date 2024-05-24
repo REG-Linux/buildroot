@@ -15,3 +15,6 @@ WAYLAND_PROTOCOLS_INSTALL_TARGET = NO
 WAYLAND_PROTOCOLS_CONF_OPTS = -Dtests=false
 
 $(eval $(meson-package))
+
+# REG declare an host package for host-mesa3d
+$(eval $(host-meson-package))

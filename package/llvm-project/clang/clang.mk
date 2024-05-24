@@ -85,6 +85,7 @@ CLANG_FILES_TO_REMOVE = \
 define CLANG_CLEANUP_TARGET
 	rm -rf $(addprefix $(TARGET_DIR),$(CLANG_FILES_TO_REMOVE))
 endef
+
 CLANG_POST_INSTALL_TARGET_HOOKS += CLANG_CLEANUP_TARGET
 
 # clang-tblgen is not installed by default, however it is necessary
