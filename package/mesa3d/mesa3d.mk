@@ -5,16 +5,9 @@
 ################################################################################
 # reglinux (update)
 
-# Asahi Edge
-#ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
-#MESA3D_VERSION = asahi-20240228
-#MESA3D_SITE = https://gitlab.freedesktop.org/asahi/mesa
-#MESA3D_SITE_METHOD = git
-#else
 MESA3D_VERSION = 24.1.0
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
-#endif
 
 MESA3D_LICENSE = MIT, SGI, Khronos
 MESA3D_LICENSE_FILES = docs/license.rst
@@ -32,6 +25,11 @@ MESA3D_DEPENDENCIES = \
 	expat \
 	libdrm \
 	zlib
+
+# REG : need building mesa3d host-side to get a working intel_clc compiler
+ifeq ($(BR2_x86_64),y)
+MESA3D_DEPENDENCIES += host-mesa3d
+endif
 
 # batocera
 ifeq ($(BR2_PACKAGE_DIRECTX_HEADERS),y)
@@ -73,10 +71,10 @@ else
 MESA3D_CONF_OPTS += -Dgallium-opencl=disabled
 endif
 
-#REG: x86 builds require clang libclc and python-ply
+#REG: x86 builds require clang libclc and python-ply, rely on system (host) intel_clc
 ifeq ($(BR2_x86_64),y)
-MESA3D_DEPENDENCIES += clang libclc host-python-ply
-#MESA3D_CONF_ENV += LD_LIBRARY_PATH=$(HOST_DIR)/usr/lib:$(TARGET_DIR)/lib:$(LD_LIBRARY_PATH) SYSROOT=$(STAGING_DIR)/usr
+MESA3D_DEPENDENCIES += clang libclc host-clang host-libclc host-python-ply
+MESA3D_CONF_OPTS += -Dintel-clc=system
 endif
 
 #REG: asahi needs libclc spirv-tools and host-spirv-llvm-translator
@@ -358,3 +356,8 @@ MESA3D_CONF_OPTS += -Dglvnd=false
 endif
 
 $(eval $(meson-package))
+
+# REG we "just" need a native host intel_clc compiler
+HOST_MESA3D_DEPENDENCIES = host-wayland-protocols host-libdrm
+HOST_MESA3D_CONF_OPTS = -Dvulkan-drivers=intel,intel_hasvk -Dintel-clc=enabled -Dinstall-intel-clc=true -Dplatforms= -Dgallium-drivers=swrast -Dglx=disabled -Dgallium-opencl=disabled
+$(eval $(host-meson-package))

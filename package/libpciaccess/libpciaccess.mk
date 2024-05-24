@@ -20,3 +20,4 @@ LIBPCIACCESS_CONF_OPTS += --without-zlib
 endif
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))
