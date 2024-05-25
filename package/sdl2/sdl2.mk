@@ -113,7 +113,12 @@ endif
 
 # REG - RISC-V depend on custom mesa to enable wayland properly
 ifeq ($(BR2_PACKAGE_IMG_GPU_POWERVR),y)
-SDL_DEPENDENCIES += img-gpu-powervr img-mesa3d
+SDL2_DEPENDENCIES += img-gpu-powervr img-mesa3d
+endif
+
+# REG - depend on mesa3d for kmsdrm (gbm+egl) if enabled
+ifeq ($(BR2_PACKAGE_MESA3D),y)
+SDL2_DEPENDENCIES += mesa3d
 endif
 
 # batocera - use Pipewire audio
