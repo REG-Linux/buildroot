@@ -358,6 +358,6 @@ endif
 $(eval $(meson-package))
 
 # REG we "just" need a native host intel_clc compiler
-HOST_MESA3D_DEPENDENCIES = host-wayland-protocols host-libdrm
+HOST_MESA3D_DEPENDENCIES = host-wayland-protocols host-libdrm host-bison host-flex host-python-mako host-expat host-zlib host-python-ply
 HOST_MESA3D_CONF_OPTS = -Dvulkan-drivers=intel,intel_hasvk -Dintel-clc=enabled -Dinstall-intel-clc=true -Dplatforms= -Dgallium-drivers=swrast -Dglx=disabled -Dgallium-opencl=disabled
 $(eval $(host-meson-package))

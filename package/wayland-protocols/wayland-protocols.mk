@@ -17,4 +17,5 @@ WAYLAND_PROTOCOLS_CONF_OPTS = -Dtests=false
 $(eval $(meson-package))
 
 # REG declare an host package for host-mesa3d
+HOST_WAYLAND_PROTOCOLS_DEPENDENCIES += host-wayland
 $(eval $(host-meson-package))
