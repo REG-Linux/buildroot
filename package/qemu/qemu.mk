@@ -534,3 +534,12 @@ $(eval $(host-generic-package))
 
 # variable used by other packages
 QEMU_USER = $(HOST_DIR)/bin/qemu-$(HOST_QEMU_ARCH)
+
+# REG fixup for mipsel
+ifeq ($(BR2_mipsel),y)
+define HOST_QEMU_POST_FIX_MIPSEL_SYMLINK
+	ln -sf $(HOST_DIR)/bin/qemu-mipsel $(HOST_DIR)/bin/qemu-mips
+endef
+HOST_QEMU_POST_INSTALL_HOOKS += HOST_QEMU_POST_FIX_MIPSEL_SYMLINK
+endif
+
