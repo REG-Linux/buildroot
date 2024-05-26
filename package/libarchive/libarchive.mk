@@ -138,6 +138,11 @@ else
 LIBARCHIVE_CONF_OPTS += --without-zstd
 endif
 
+# REG fix building with musl
+ifeq ($(BR2_TOOLCHAIN_USES_MUSL),y)
+LIBARCHIVE_CONF_ENV += LIBS="-latomic"
+endif
+
 # The only user of host-libarchive needs zlib support
 HOST_LIBARCHIVE_DEPENDENCIES = host-zlib
 # needed for autoreconf
