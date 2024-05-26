@@ -3,10 +3,14 @@
 # rust-bin
 #
 ################################################################################
-# batocerta - bump
+# REG - bump
 # When updating this version, check whether support/download/cargo-post-process
 # still generates the same archives.
+ifeq ($(BR2_mipsel),y)
+RUST_BIN_VERSION = 1.74.1
+else
 RUST_BIN_VERSION = 1.77.1
+endif
 RUST_BIN_SITE = https://static.rust-lang.org/dist
 RUST_BIN_LICENSE = Apache-2.0 or MIT
 RUST_BIN_LICENSE_FILES = LICENSE-APACHE LICENSE-MIT
