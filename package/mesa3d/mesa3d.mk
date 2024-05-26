@@ -31,6 +31,11 @@ ifeq ($(BR2_x86_64),y)
 MESA3D_DEPENDENCIES += host-mesa3d
 endif
 
+# REG : need host-python-pycparser built for etnaviv
+ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ETNAVIV),y)
+MESA3D_DEPENDENCIES += host-python-pycparser
+endif
+
 # batocera
 ifeq ($(BR2_PACKAGE_DIRECTX_HEADERS),y)
 MESA3D_DEPENDENCIES += directx-headers
