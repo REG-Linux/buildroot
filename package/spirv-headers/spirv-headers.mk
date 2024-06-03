@@ -3,10 +3,8 @@
 # spirv-headers
 #
 ################################################################################
-# batocera - update
-# Keep in sync with spirv-tools version
-# REG: 1.3.280.0 to build spirv-llvm-translator
-SPIRV_HEADERS_VERSION = 1.3.280.0
+# REG: 1.3.283.0 to build spirv-llvm-translator
+SPIRV_HEADERS_VERSION = 1.3.283.0
 SPIRV_HEADERS_SITE = $(call github,KhronosGroup,SPIRV-Headers,vulkan-sdk-$(SPIRV_HEADERS_VERSION))
 SPIRV_HEADERS_LICENSE = MIT
 SPIRV_HEADERS_LICENSE_FILES = LICENSE
