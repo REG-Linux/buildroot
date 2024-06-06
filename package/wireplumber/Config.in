@@ -7,6 +7,7 @@ config BR2_PACKAGE_WIREPLUMBER
 	depends on BR2_TOOLCHAIN_HAS_THREADS # libglib2
 	depends on BR2_USE_MMU # libglib2
 	select BR2_PACKAGE_LIBGLIB2
+	select BR2_PACKAGE_HOST_DOXYGEN
 	help
 	  WirePlumber is a modular session / policy manager for
 	  PipeWire and a GObject-based high-level library that
