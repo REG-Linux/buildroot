@@ -12,7 +12,7 @@ VULKAN_TOOLS_LICENSE_FILES = LICENSE.txt
 VULKAN_TOOLS_DEPENDENCIES = \
 	vulkan-headers \
 	vulkan-loader \
-	vulkan-volk
+	vulkan-volk # batocera
 
 VULKAN_TOOLS_CONF_OPTS += \
 	-DBUILD_CUBE=OFF \

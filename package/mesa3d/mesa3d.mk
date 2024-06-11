@@ -180,6 +180,13 @@ MESA3D_CONF_OPTS += \
 	-Dgallium-extra-hud=true
 endif
 
+# batocera - intel ray tracing
+ifeq ($(BR2_PACKAGE_MESA3D_VULKAN_DRIVER_INTEL),y)
+    MESA3D_DEPENDENCIES += host-intel-clc host-python-ply
+    MESA3D_CONF_OPTS += -Dintel-clc=system
+    MESA3D_MESON_EXTRA_BINARIES += intel_clc='$(HOST_DIR)/usr/bin/intel_clc'
+endif
+
 ifeq ($(BR2_PACKAGE_MESA3D_VULKAN_DRIVER),)
 MESA3D_CONF_OPTS += \
 	-Dvulkan-drivers=
@@ -350,14 +357,14 @@ MESA3D_CFLAGS += -mlong-jump-table-offsets
 endif
 
 ifeq ($(BR2_PACKAGE_LIBGLVND),y)
-ifneq ($(BR2_PACKAGE_MESA3D_OPENGL_GLX)$(BR2_PACKAGE_MESA3D_OPENGL_EGL),)
-MESA3D_DEPENDENCIES += libglvnd
-MESA3D_CONF_OPTS += -Dglvnd=true
+    ifneq ($(BR2_PACKAGE_MESA3D_OPENGL_GLX)$(BR2_PACKAGE_MESA3D_OPENGL_EGL),)
+        MESA3D_DEPENDENCIES += libglvnd
+        MESA3D_CONF_OPTS += -Dglvnd=enabled
+    else
+        MESA3D_CONF_OPTS += -Dglvnd=disabled
+    endif
 else
-MESA3D_CONF_OPTS += -Dglvnd=false
-endif
-else
-MESA3D_CONF_OPTS += -Dglvnd=false
+    MESA3D_CONF_OPTS += -Dglvnd=disabled
 endif
 
 $(eval $(meson-package))
