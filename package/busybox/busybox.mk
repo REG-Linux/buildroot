@@ -386,6 +386,11 @@ define BUSYBOX_KCONFIG_FIXUP_CMDS
 	$(BUSYBOX_SET_INDIVIDUAL_BINARIES)
 endef
 
+# REGLinux
+define BUSYBOX_INSTALL_SEEDRNG
+	cd $(TARGET_DIR)/bin && ln -sf /bin/busybox seedrng
+endef
+
 define BUSYBOX_BUILD_CMDS
 	$(BUSYBOX_MAKE_ENV) $(MAKE) $(BUSYBOX_MAKE_OPTS) -C $(@D)
 endef
@@ -399,6 +404,7 @@ define BUSYBOX_INSTALL_TARGET_CMDS
 	$(BUSYBOX_INSTALL_UDHCPC_SCRIPT)
 	$(BUSYBOX_INSTALL_ZCIP_SCRIPT)
 	$(BUSYBOX_INSTALL_MDEV_CONF)
+	$(BUSYBOX_INSTALL_SEEDRNG)
 endef
 
 # Install the sysvinit scripts, for the moment, but not those that already

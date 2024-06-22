@@ -121,14 +121,12 @@ do_update() {
 }
 
 do_plymouth() {
-    export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/lib/plymouth
-
     # Plymouth needs /dev/pts mounted
     mkdir /dev/pts
     mount -t devpts /dev/pts /dev/pts
 
-    /usr/sbin/plymouthd --graphical-boot --attach-to-session --mode=boot
-    /usr/bin/plymouth --show-splash
+    plymouthd --graphical-boot --attach-to-session --mode=boot
+    plymouth --show-splash
 }
 
 do_root() {
@@ -146,10 +144,13 @@ do_root() {
     done
 
     # look for devices
-    mount -t devtmpfs none /dev
+    mount -t devtmpfs devtmpfs /dev
 
     # Start plymouth
-    #do_plymouth
+    if [ -x /usr/sbin/plymouthd -a -x /usr/bin/plymouth ]
+    then
+        do_plymouth
+    fi
 
     MOUNTARG=none
     test -n "${dev}"   && MOUNTARG=${dev}
@@ -226,6 +227,8 @@ do_root() {
     mount --move /proc 	       /new_root/proc 	  || return 1
     mount --move /dev  	       /new_root/dev  	  || return 1
 
+    plymouth --newroot=/new_root
+
     # switch to the new root
     exec switch_root /new_root /sbin/init || return 1
 }
@@ -233,5 +236,5 @@ do_root() {
 if ! do_root
 then
     echo "Cannot boot to mounted filesystem !"
-    /bin/bash
+    /bin/ash
 fi
