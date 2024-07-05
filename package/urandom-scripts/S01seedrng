@@ -28,6 +28,9 @@ SEEDRNG_ARGS=""
 # shellcheck source=/dev/null
 [ -r "/etc/default/$DAEMON" ] && . "/etc/default/$DAEMON"
 
+# Reglinux
+mkdir -p /var/lib/seedrng
+
 case "$1" in
 	start|stop|restart|reload)
 		# Never fail, as this isn't worth making a fuss
