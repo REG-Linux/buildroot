@@ -10,7 +10,8 @@ config BR2_PACKAGE_PCMANFM
 	select BR2_PACKAGE_LIBFM
 	select BR2_PACKAGE_MENU_CACHE
 	select BR2_PACKAGE_LIBGLIB2
-	select BR2_PACKAGE_LIBGTK2 if !BR2_PACKAGE_LIBGTK3_X11
+	#REG force GTK3
+	select BR2_PACKAGE_LIBGTK3
 	help
 	  PCMan File Manager (PCManFM) is a file manager application
 	  developed by Hong Jen Yee from Taiwan which is meant to be a
