@@ -101,11 +101,6 @@ SDL2_CONF_OPTS += --enable-static
 # batocera - disable hidapi
 SDL2_CONF_OPTS += --disable-hidapi
 
-# batocera - sdl2 set the rpi video output from the host name
-ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
-SDL2_CONF_OPTS += --host=arm-raspberry-linux-gnueabihf
-endif
-
 # batocera - Used in screen rotation (SDL and Retroarch)
 ifeq ($(BR2_PACKAGE_ROCKCHIP_RGA),y)
 SDL2_DEPENDENCIES += rockchip-rga
@@ -162,12 +157,7 @@ else
 SDL2_CONF_OPTS += --disable-video-directfb
 endif
 
-ifeq ($(BR2_PACKAGE_SDL2_OPENGLES)$(BR2_PACKAGE_RPI_USERLAND),yy)
-SDL2_DEPENDENCIES += rpi-userland
-SDL2_CONF_OPTS += --enable-video-rpi
-else
 SDL2_CONF_OPTS += --disable-video-rpi
-endif
 
 # x-includes and x-libraries must be set for cross-compiling
 # By default x_includes and x_libraries contains unsafe paths.
