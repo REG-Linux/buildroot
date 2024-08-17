@@ -131,6 +131,7 @@ do_root() {
         case ${param} in
             dev=*)   dev=${param#dev=};;
             label=*) label=${param#label=};;
+            uuid=*)  uuid=${param#uuid=};;
         esac
     done
 
@@ -140,6 +141,7 @@ do_root() {
     MOUNTARG=none
     test -n "${dev}"   && MOUNTARG=${dev}
     test -n "${label}" && MOUNTARG=LABEL=${label}
+    test -n "${uuid}" && MOUNTARG=UUID=${uuid}
 
     while ! do_mount "${MOUNTARG}"
     do
