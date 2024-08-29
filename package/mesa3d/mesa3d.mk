@@ -23,7 +23,9 @@ MESA3D_DEPENDENCIES = \
 	host-python-mako \
 	expat \
 	libdrm \
-	zlib
+	zlib \
+	host-python3 \
+	host-python-pyyaml
 
 # REG : need building mesa3d host-side to get a working intel_clc compiler
 ifeq ($(BR2_x86_64),y)
@@ -83,7 +85,7 @@ endif
 
 #REG: asahi needs libclc spirv-tools and host-spirv-llvm-translator
 ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
-MESA3D_DEPENDENCIES += host-qemu host-libclc libclc spirv-tools spirv-llvm-translator clang #host-spirv-llvm-translator
+MESA3D_DEPENDENCIES += host-qemu host-libclc libclc spirv-tools spirv-llvm-translator clang host-glslang #host-spirv-llvm-translator
 endif
 
 ifeq ($(BR2_PACKAGE_MESA3D_NEEDS_ELFUTILS),y)
@@ -164,7 +166,6 @@ MESA3D_VIDEO_CODECS-$(BR2_PACKAGE_MESA3D_VIDEO_CODEC_VP9DEC)        += vp9dec
 # batocera
 # Vulkan Layers - helps with multi-GPU switching
 ifeq ($(BR2_PACKAGE_WAYLAND)$(BR2_PACKAGE_MESA3D_NEEDS_X11),yy)
-MESA3D_DEPENDENCIES += python3 host-glslang
 MESA3D_CONF_OPTS += -Dvulkan-layers=device-select,overlay
 endif
 
@@ -183,7 +184,7 @@ ifeq ($(BR2_PACKAGE_MESA3D_VULKAN_DRIVER),)
 MESA3D_CONF_OPTS += \
 	-Dvulkan-drivers=
 else
-MESA3D_DEPENDENCIES += host-python-glslang
+MESA3D_DEPENDENCIES += host-glslang host-python-glslang
 MESA3D_CONF_OPTS += \
 	-Dvulkan-drivers=$(subst $(space),$(comma),$(MESA3D_VULKAN_DRIVERS-y))
 endif
@@ -362,6 +363,6 @@ endif
 $(eval $(meson-package))
 
 # REG we "just" need a native host intel_clc compiler
-HOST_MESA3D_DEPENDENCIES = host-wayland-protocols host-libdrm host-bison host-flex host-python-mako host-expat host-zlib host-python-ply
+HOST_MESA3D_DEPENDENCIES = host-wayland-protocols host-libdrm host-bison host-flex host-python-mako host-expat host-zlib host-python-ply host-python3 host-python-pyyaml
 HOST_MESA3D_CONF_OPTS = -Dvulkan-drivers=intel,intel_hasvk -Dintel-clc=enabled -Dinstall-intel-clc=true -Dplatforms= -Dgallium-drivers=swrast -Dglx=disabled -Dgallium-opencl=disabled
 $(eval $(host-meson-package))
