@@ -4,7 +4,7 @@
 #
 ################################################################################
 # reglinux (update)
-MESA3D_VERSION = 24.1.6
+MESA3D_VERSION = 24.2.1
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
 
