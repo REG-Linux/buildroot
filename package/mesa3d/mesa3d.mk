@@ -48,7 +48,7 @@ MESA3D_CONF_OPTS = \
 
 ifeq ($(BR2_PACKAGE_MESA3D_DRIVER)$(BR2_PACKAGE_XORG7),yy)
 MESA3D_CONF_OPTS += -Ddri3=enabled
-MESA3D_DEPENDENCIES += xlib_libxshmfence
+MESA3D_DEPENDENCIES += xlib_libxshmfence host-glslang
 else
 MESA3D_CONF_OPTS += -Ddri3=disabled
 endif
