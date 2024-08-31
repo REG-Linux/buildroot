@@ -1,5 +1,4 @@
-#!/bin/sh
-# REGLinux configuration
+#!/bin/ash
 
 # update the rescue if needed
 do_update_rescue() {
@@ -10,9 +9,12 @@ do_update_rescue() {
         # remove the overlay when updating
         if test -e /boot_root/boot/overlay
         then
-            mv /boot_root/boot/overlay /boot_root/boot/overlay.old  || return 1
+            mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
         mount -o remount,ro /boot_root || return 1
+
+        # execute do_rescue to finish upgrade, expand SHARE partition, etc.
+        do_rescue || return 1
     fi
 }
 
@@ -21,15 +23,11 @@ do_update_modules() {
     if test -e /boot_root/boot/modules.update
     then
         mount -o remount,rw /boot_root || return 1
-        if test -e /boot_root/boot/modules
-        then
-            rm /boot_root/boot/modules || return 1
-        fi
         mv /boot_root/boot/modules.update /boot_root/boot/modules || return 1
         # remove the overlay when updating
         if test -e /boot_root/boot/overlay
         then
-            mv /boot_root/boot/overlay /boot_root/boot/overlay.old  || return 1
+            mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
         mount -o remount,ro /boot_root || return 1
     fi
@@ -40,15 +38,11 @@ do_update_firmware() {
     if test -e /boot_root/boot/firmware.update
     then
         mount -o remount,rw /boot_root || return 1
-        if test -e /boot_root/boot/firmware
-        then
-            rm /boot_root/boot/firmware || return 1
-        fi
         mv /boot_root/boot/firmware.update /boot_root/boot/firmware || return 1
         # remove the overlay when updating
         if test -e /boot_root/boot/overlay
         then
-            mv /boot_root/boot/overlay /boot_root/boot/overlay.old  || return 1
+            mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
         mount -o remount,ro /boot_root || return 1
     fi
@@ -63,7 +57,7 @@ do_update_rootfs() {
         # remove the overlay when updating
         if test -e /boot_root/boot/overlay
         then
-            mv /boot_root/boot/overlay /boot_root/boot/overlay.old  || return 1
+            mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
         mount -o remount,ro /boot_root || return 1
     fi
@@ -82,50 +76,44 @@ do_mount_firmware() {
 }
 
 do_mount() {
-    if mount -o ro "${1}"           /boot_root;
-    then
-        return 0;
-    fi
+    if mount -o ro "${1}" /boot_root; then return 0; fi
     return 1
 }
 
 do_rescue() {
-    # mount the rootfs
-    mount /boot_root/boot/rescue /overlay_root/base || return 1
-
-    # mount the future root in read write
-    if ! mount -t overlay overlay -o rw,lowerdir=/overlay_root/base,upperdir=/overlay_root/overlay,workdir=/overlay_root/work /new_root
+    # Remove the trigger
+    if test -f /boot_root/REG_RESCUE
     then
-	# mount only as squashfs, no overlay (xu4 doesn't support overlayfs)
-	    mount /boot_root/boot/rescue /new_root || return 1
+        mount -o remount,rw /boot_root || return 1
+        rm /boot_root/REG_RESCUE       || return 1
+        mount -o remount,ro /boot_root || return 1
     fi
+
+    # mount the future root
+    mount /boot_root/boot/rescue /new_root || return 1
 
     do_mount_firmware
     do_mount_modules
 
     # moving current mounts
-    mount --move /boot_root    /new_root/boot     || return 1
-    mount --move /overlay_root /new_root/overlay  || return 1
-    mount --move /sys  	       /new_root/sys  	  || return 1
-    mount --move /proc 	       /new_root/proc 	  || return 1
-    mount --move /dev  	       /new_root/dev  	  || return 1
+    mkdir -p /new_root/boot /new_root/sys /new_root/proc /new_root/dev
+    mount --move /boot_root    /new_root/boot    || return 1
+    mount --move /sys  	       /new_root/sys     || return 1
+    mount --move /proc 	       /new_root/proc    || return 1
+    mount --move /dev  	       /new_root/dev     || return 1
 
     # Switch to rescue filesystem
     exec switch_root /new_root /sbin/init || return 1
-
-    return 0
-}
-
-do_update() {
-    do_rescue || return 1
+    # If no error, it won't return to this script, so rescue needs to reboot the system
 }
 
 do_root() {
     mkdir -p /boot_root /new_root /overlay_root /sys /proc || return 1
-    mount -t proc  -o nodev,noexec,nosuid proc  /proc  	|| return 1
-    mount -t sysfs -o nodev,noexec,nosuid sysfs /sys 	|| return 1
+    mount -t proc  -o nodev,noexec,nosuid proc  /proc      || return 1
+    mount -t sysfs -o nodev,noexec,nosuid sysfs /sys       || return 1
 
-    MOUNTARG=none
+    # Mount by default this partition
+    MOUNTARG="LABEL=REGLINUX"
     # read the parameters
     read -r cmdline < /proc/cmdline
     for param in ${cmdline} ; do
@@ -154,11 +142,19 @@ do_root() {
         sleep 1
     done
 
-    # Process updates if any
-    do_update_rescue
+    # Process updates if any, do_update_rescue must be the last
     do_update_modules
     do_update_firmware
     do_update_rootfs
+    do_update_rescue
+
+    # Test for RESCUE mode trigger
+    if test -f /boot_root/REG_RESCUE
+    then
+        do_rescue || return 1
+        # this script won't go past here
+        # do_rescue must reboot the system
+    fi
 
     # create an overlay on memory
     mount -t tmpfs -o size=32M tmpfs /overlay_root || return 1
@@ -175,30 +171,6 @@ do_root() {
         fi
     fi
 
-    # First test for RESCUE mode
-    if test -f /boot_root/REG_RESCUE
-    then
-        mount -o remount,rw /boot_root || return 1
-        rm -f /boot_root/REG_RESCUE
-        mount -o remount,ro /boot_root || return 1
-        do_rescue || return 1
-        sync
-        reboot
-        return 0
-    fi
-
-    # Then test for UPDATE mode
-    if test -f /boot_root/REG_UPDATE
-    then
-        mount -o remount,rw /boot_root || return 1
-        rm -f /boot_root/REG_UPDATE
-        mount -o remount,ro /boot_root || return 1
-        do_update || return 1
-        sync
-        reboot
-        return 0
-    fi
-
     # mount the rootfs
     mount /boot_root/boot/reglinux /overlay_root/base || return 1
 
@@ -213,11 +185,12 @@ do_root() {
     do_mount_modules
 
     # moving current mounts
-    mount --move /boot_root    /new_root/boot     || return 1
-    mount --move /overlay_root /new_root/overlay  || return 1
-    mount --move /sys  	       /new_root/sys  	  || return 1
-    mount --move /proc 	       /new_root/proc 	  || return 1
-    mount --move /dev  	       /new_root/dev  	  || return 1
+    mkdir -p /new_root/boot /new_root/overlay /new_root/sys /new_root/proc /new_root/dev
+    mount --move /boot_root    /new_root/boot    || return 1
+    mount --move /overlay_root /new_root/overlay || return 1
+    mount --move /sys  	       /new_root/sys  	 || return 1
+    mount --move /proc 	       /new_root/proc 	 || return 1
+    mount --move /dev  	       /new_root/dev  	 || return 1
 
     # switch to the new root
     exec switch_root /new_root /sbin/init || return 1
