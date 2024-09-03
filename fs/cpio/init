@@ -12,7 +12,7 @@ do_update_rescue() {
             mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
         # trigger do_rescue to finish upgrade, expand SHARE partition, etc.
-        touch /boot/REG_UPDATE
+        touch /boot_root/REG_UPDATE
         mount -o remount,ro /boot_root || return 1
     fi
 }
