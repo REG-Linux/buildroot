@@ -11,10 +11,9 @@ do_update_rescue() {
         then
             mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
+        # trigger do_rescue to finish upgrade, expand SHARE partition, etc.
+        touch /boot/REG_UPDATE
         mount -o remount,ro /boot_root || return 1
-
-        # execute do_rescue to finish upgrade, expand SHARE partition, etc.
-        do_rescue || return 1
     fi
 }
 
@@ -81,14 +80,6 @@ do_mount() {
 }
 
 do_rescue() {
-    # Remove the trigger
-    if test -f /boot_root/REG_RESCUE
-    then
-        mount -o remount,rw /boot_root || return 1
-        rm /boot_root/REG_RESCUE       || return 1
-        mount -o remount,ro /boot_root || return 1
-    fi
-
     # mount the future root
     mount /boot_root/boot/rescue /new_root || return 1
 
@@ -149,7 +140,7 @@ do_root() {
     do_update_rescue
 
     # Test for RESCUE mode trigger
-    if test -f /boot_root/REG_RESCUE
+    if test -f /boot_root/REG_UPDATE || test -f /boot_root/REG_RESCUE
     then
         do_rescue || return 1
         # this script won't go past here
