@@ -1,4 +1,5 @@
-#!/bin/ash
+# REGLinux configuration
+#!/bin/sh
 
 # update the rescue if needed
 do_update_rescue() {
@@ -190,5 +191,5 @@ do_root() {
 if ! do_root
 then
     echo "Cannot boot to mounted filesystem !"
-    /bin/ash
+    /bin/sh
 fi
