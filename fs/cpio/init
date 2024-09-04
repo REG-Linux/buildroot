@@ -1,5 +1,5 @@
-# REGLinux configuration
 #!/bin/sh
+# REGLinux configuration
 
 # update the rescue if needed
 do_update_rescue() {
@@ -12,7 +12,7 @@ do_update_rescue() {
         then
             mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
-        # trigger do_rescue to finish upgrade, expand SHARE partition, etc.
+        # trigger rescue to finish upgrade, expand SHARE partition, etc.
         touch /boot_root/REG_UPDATE
         mount -o remount,ro /boot_root || return 1
     fi
@@ -80,25 +80,6 @@ do_mount() {
     return 1
 }
 
-do_rescue() {
-    # mount the future root
-    mount /boot_root/boot/rescue /new_root || return 1
-
-    do_mount_firmware
-    do_mount_modules
-
-    # moving current mounts
-    mkdir -p /new_root/boot /new_root/sys /new_root/proc /new_root/dev
-    mount --move /boot_root    /new_root/boot    || return 1
-    mount --move /sys  	       /new_root/sys     || return 1
-    mount --move /proc 	       /new_root/proc    || return 1
-    mount --move /dev  	       /new_root/dev     || return 1
-
-    # Switch to rescue filesystem
-    exec switch_root /new_root /sbin/init || return 1
-    # If no error, it won't return to this script, so rescue needs to reboot the system
-}
-
 do_root() {
     mkdir -p /boot_root /new_root /overlay_root /sys /proc || return 1
     mount -t proc  -o nodev,noexec,nosuid proc  /proc      || return 1
@@ -134,43 +115,46 @@ do_root() {
         sleep 1
     done
 
-    # Process updates if any, do_update_rescue must be the last
+    # Process updates if any
     do_update_modules
     do_update_firmware
     do_update_rootfs
     do_update_rescue
 
-    # Test for RESCUE mode trigger
-    if test -f /boot_root/REG_UPDATE || test -f /boot_root/REG_RESCUE
-    then
-        do_rescue || return 1
-        # this script won't go past here
-        # do_rescue must reboot the system
-    fi
-
     # create an overlay on memory
     mount -t tmpfs -o size=32M tmpfs /overlay_root || return 1
     mkdir /overlay_root/base /overlay_root/overlay /overlay_root/work /overlay_root/saved || return 1
 
-    # fill the overlay with the stored one
-    if test -f /boot_root/boot/overlay
+    if test -f /boot_root/REG_UPDATE || test -f /boot_root/REG_RESCUE
     then
-        # the mount can fail if the fs was open in write and not correctly closed
-        if mount -o ro /boot_root/boot/overlay /overlay_root/saved
+        # mount the rootfs
+        mount /boot_root/boot/rescue /overlay_root/base || return 1
+    else
+        # fill the overlay with the stored one
+        if test -f /boot_root/boot/overlay
         then
-            cp -pr /overlay_root/saved/* /overlay_root/overlay || return 1
-            umount /overlay_root/saved                         || return 1
+            # the mount can fail if the fs was open in write and not correctly closed
+            if mount -o ro /boot_root/boot/overlay /overlay_root/saved
+            then
+                cp -pr /overlay_root/saved/* /overlay_root/overlay || return 1
+                umount /overlay_root/saved                         || return 1
+            fi
         fi
-    fi
 
-    # mount the rootfs
-    mount /boot_root/boot/reglinux /overlay_root/base || return 1
+        # mount the rootfs
+        mount /boot_root/boot/reglinux /overlay_root/base || return 1
+    fi
 
     # mount the future root in read write
     if ! mount -t overlay overlay -o rw,lowerdir=/overlay_root/base,upperdir=/overlay_root/overlay,workdir=/overlay_root/work /new_root
     then
         # mount only as squashfs, no overlay (xu4 doesn't support overlayfs)
-        mount /boot_root/boot/reglinux /new_root || return 1
+        if test -f /boot_root/REG_UPDATE || test -f /boot_root/REG_RESCUE
+        then
+            mount /boot_root/boot/rescue /new_root || return 1
+        else
+            mount /boot_root/boot/reglinux /new_root || return 1
+        fi
     fi
 
     do_mount_firmware
