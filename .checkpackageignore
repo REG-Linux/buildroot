@@ -443,15 +443,15 @@ package/gdb/13.2/0006-Fix-getrandom-compile-for-uclibc-v1.0.35.patch Upstream
 package/gdb/13.2/0007-fix-musl-build-on-riscv.patch Upstream
 package/gdb/13.2/0008-gdbserver-Makefile.in-fix-NLS-build.patch Upstream
 package/gdb/13.2/0009-gdb-Fix-native-build-on-xtensa.patch Upstream
-package/gdb/14.1/0001-ppc-ptrace-Define-pt_regs-uapi_pt_regs-on-GLIBC-syst.patch Upstream
-package/gdb/14.1/0002-sh-ptrace-Define-pt_-dsp-regs-uapi_pt_-dsp-regs-on-G.patch Upstream
-package/gdb/14.1/0003-use-asm-sgidefs.h.patch Upstream
-package/gdb/14.1/0004-gdbserver-fix-build-for-m68k.patch Upstream
-package/gdb/14.1/0005-nat-fork-inferior-include-linux-ptrace.h.patch Upstream
-package/gdb/14.1/0006-Fix-getrandom-compile-for-uclibc-v1.0.35.patch Upstream
-package/gdb/14.1/0007-fix-musl-build-on-riscv.patch Upstream
-package/gdb/14.1/0008-gdbserver-Makefile.in-fix-NLS-build.patch Upstream
-package/gdb/14.1/0009-gdb-Fix-native-build-on-xtensa.patch Upstream
+package/gdb/14.2/0001-ppc-ptrace-Define-pt_regs-uapi_pt_regs-on-GLIBC-syst.patch Upstream
+package/gdb/14.2/0002-sh-ptrace-Define-pt_-dsp-regs-uapi_pt_-dsp-regs-on-G.patch Upstream
+package/gdb/14.2/0003-use-asm-sgidefs.h.patch Upstream
+package/gdb/14.2/0004-gdbserver-fix-build-for-m68k.patch Upstream
+package/gdb/14.2/0005-nat-fork-inferior-include-linux-ptrace.h.patch Upstream
+package/gdb/14.2/0006-Fix-getrandom-compile-for-uclibc-v1.0.35.patch Upstream
+package/gdb/14.2/0007-fix-musl-build-on-riscv.patch Upstream
+package/gdb/14.2/0008-gdbserver-Makefile.in-fix-NLS-build.patch Upstream
+package/gdb/14.2/0009-gdb-Fix-native-build-on-xtensa.patch Upstream
 package/gengetopt/0001-configure.ac-add-disable-doc-option.patch Upstream
 package/genpart/0001-fix-return-code.patch Upstream
 package/genromfs/0001-build-system.patch Sob Upstream
@@ -875,11 +875,9 @@ package/nginx/0002-auto-feature-add-mechanism-allowing-to-force-feature.patch Up
 package/nginx/0003-auto-set-ngx_feature_run_force_result-for-each-featu.patch Upstream
 package/nginx/0004-auto-lib-libxslt-conf-use-pkg-config.patch Upstream
 package/nginx/0005-auto-unix-make-sys_nerr-guessing-cross-friendly.patch Upstream
-package/nginx/0006-auto-lib-openssl-conf-use-pkg-config.patch Upstream
-package/nginx/0007-auto-lib-libgd-conf-use-pkg-config.patch Upstream
-package/nginx/0008-src-os-unix-ngx_linux_config.h-only-include-dlfcn.h-.patch Upstream
-package/nginx/0009-auto-os-linux-fix-build-with-libxcrypt.patch Upstream
-package/nginx/0010-Allow-forcing-of-endianness-for-cross-compilation.patch Upstream
+package/nginx/0006-auto-lib-libgd-conf-use-pkg-config.patch Upstream
+package/nginx/0007-src-os-unix-ngx_linux_config.h-only-include-dlfcn.h-.patch Upstream
+package/nginx/0008-Allow-forcing-of-endianness-for-cross-compilation.patch Upstream
 package/nginx/S50nginx Indent Variables
 package/nilfs-utils/0001-nilfs_cleanerd-link-dynamically.patch Upstream
 package/nmap/0001-libdnet-wrapper-configure.patch Upstream
@@ -1011,9 +1009,6 @@ package/pptp-linux/0002-fix-parallel-build.patch Upstream
 package/prboom/0001-libpng-1.4.patch Upstream
 package/prboom/0002-configure-remove-predefined-O2-optimization-flag.patch Upstream
 package/prelink-cross/0001-src-rtld-dl-tls.c-Fix-TLS-offsets-computation-for-s3.patch Upstream
-package/procps-ng/0001-configure-Add--disable-w.patch Upstream
-package/procps-ng/0002-escape-c-Fix-missing-nl_langinfo-on-certain-configs.patch Upstream
-package/procps-ng/0003-fix-pifd_open-check.patch Upstream
 package/procps-ng/S02sysctl Variables
 package/proftpd/S50proftpd Indent Shellcheck Variables
 package/prosody/0001-enable-syslog.patch Upstream
