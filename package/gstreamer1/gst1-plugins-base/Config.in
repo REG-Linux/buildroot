@@ -3,7 +3,6 @@ menuconfig BR2_PACKAGE_GST1_PLUGINS_BASE
 	select BR2_PACKAGE_XLIB_LIBX11 if BR2_PACKAGE_XORG7
 	select BR2_PACKAGE_XLIB_LIBXEXT if BR2_PACKAGE_XORG7
 	select BR2_PACKAGE_XLIB_LIBXV if BR2_PACKAGE_XORG7
-	select BR2_PACKAGE_LIBGRAPHENE # batocera
 	help
 	  A basic set of well-supported plug-ins for GStreamer.
 
@@ -178,8 +177,7 @@ config BR2_PACKAGE_GST1_PLUGINS_BASE_LIB_OPENGL_GLX
 	bool "glx"
 	default y
 	depends on BR2_PACKAGE_GST1_PLUGINS_BASE_LIB_OPENGL_OPENGL
-	# REG add xwayland
-	depends on BR2_PACKAGE_XWAYLAND || BR2_PACKAGE_XSERVER_XORG_SERVER_MODULAR # mesa needs big X
+	depends on BR2_PACKAGE_XSERVER_XORG_SERVER_MODULAR # mesa needs big X
 	depends on !BR2_PACKAGE_RPI_USERLAND # x11
 	select BR2_PACKAGE_XLIB_LIBXRENDER
 	select BR2_PACKAGE_XORGPROTO
@@ -191,12 +189,10 @@ config BR2_PACKAGE_GST1_PLUGINS_BASE_LIB_OPENGL_GLX
 comment "glx not supported with rpi-userland"
 	depends on BR2_PACKAGE_RPI_USERLAND
 
-# REG add xwayland
-comment "glx needs the opengl API and XWayland or modular X.org"
+comment "glx needs the opengl API and modular X.org"
 	depends on !BR2_PACKAGE_RPI_USERLAND && \
 		(!BR2_PACKAGE_GST1_PLUGINS_BASE_LIB_OPENGL_OPENGL || \
-		!BR2_PACKAGE_XSERVER_XORG_SERVER_MODULAR || \
-		!BR2_PACKAGE_XWAYLAND )
+		!BR2_PACKAGE_XSERVER_XORG_SERVER_MODULAR)
 
 config BR2_PACKAGE_GST1_PLUGINS_BASE_LIB_OPENGL_EGL
 	bool "egl"
