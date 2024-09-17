@@ -36,9 +36,6 @@ endif
 
 GST1_PLUGINS_BASE_DEPENDENCIES = gstreamer1 $(TARGET_NLS_DEPENDENCIES)
 
-# batocera
-GST1_PLUGINS_BASE_DEPENDENCIES += libgraphene
-
 GST1_PLUGINS_BASE_LDFLAGS = $(TARGET_LDFLAGS) $(TARGET_NLS_LIBS)
 
 # These plugins are listed in the order from ./configure --help

@@ -549,9 +549,7 @@ ifeq ($(BR2_PACKAGE_X264),y)
 VLC_CONF_OPTS += --enable-x264
 VLC_DEPENDENCIES += x264
 else
-# batocera
-# disable x26410b if no x264 (linking fails if x26410b enabled)
-VLC_CONF_OPTS += --disable-x264 --disable-x26410b
+VLC_CONF_OPTS += --disable-x264
 endif
 
 ifeq ($(BR2_PACKAGE_X265),y)
@@ -582,15 +580,5 @@ VLC_DEPENDENCIES += gnutls
 else
 VLC_CONF_OPTS += --disable-gnutls
 endif
-
-# batocera - enable vdpau when available
-# provides lower cpu overhead for ES themes that use videos
-ifeq ($(BR2_PACKAGE_LIBVDPAU)$(BR2_PACKAGE_MESA3D_VDPAU),yy)
-VLC_CONF_OPTS += --enable-vdpau
-endif
-
-# batocera - disable pulse for ES themes
-# this causes audio to bleed through when it shouldn't
-VLC_CONF_OPTS += --disable-pulse
 
 $(eval $(autotools-package))
