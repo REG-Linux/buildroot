@@ -3,7 +3,7 @@
 # libxcb
 #
 ################################################################################
-# batocera - update
+# reglinux - update
 LIBXCB_VERSION = 1.16
 LIBXCB_SOURCE = libxcb-$(LIBXCB_VERSION).tar.xz
 LIBXCB_SITE = https://xorg.freedesktop.org/archive/individual/lib

@@ -3,7 +3,7 @@
 # xdriver_xf86-input-libinput
 #
 ################################################################################
-# batocera - update
+# reglinux - update
 XDRIVER_XF86_INPUT_LIBINPUT_VERSION = 1.4.0
 XDRIVER_XF86_INPUT_LIBINPUT_SOURCE = xf86-input-libinput-$(XDRIVER_XF86_INPUT_LIBINPUT_VERSION).tar.xz
 XDRIVER_XF86_INPUT_LIBINPUT_SITE = https://xorg.freedesktop.org/archive/individual/driver

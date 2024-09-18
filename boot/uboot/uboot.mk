@@ -181,7 +181,7 @@ UBOOT_PRE_BUILD_HOOKS += UBOOT_COPY_ATF_FIRMWARE
 endif
 endif
 
-# batocera
+# reglinux
 ifeq ($(BR2_TARGET_UBOOT_NO_SCP),y)
 UBOOT_MAKE_OPTS += SCP=/dev/null
 endif
