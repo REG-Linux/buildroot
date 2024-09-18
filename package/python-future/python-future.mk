@@ -3,7 +3,7 @@
 # python-future
 #
 ################################################################################
-# batocera - bump
+# reglinux - bump
 PYTHON_FUTURE_VERSION = v1.0.0
 PYTHON_FUTURE_SOURCE = $(PYTHON_FUTURE_VERSION).tar.gz
 PYTHON_FUTURE_SITE = https://github.com/PythonCharmers/python-future/archive/refs/tags

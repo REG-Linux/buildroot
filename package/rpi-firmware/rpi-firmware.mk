@@ -3,7 +3,7 @@
 # rpi-firmware
 #
 ################################################################################
-# batocera (update) - Aligns to kernel version: 6.6.51
+# reglinux (update) - Aligns to kernel version: 6.6.51
 RPI_FIRMWARE_VERSION = 48cd9f9dfe536c5ad32367a1554b12d5a7325d00
 RPI_FIRMWARE_SITE = $(call github,raspberrypi,firmware,$(RPI_FIRMWARE_VERSION))
 RPI_FIRMWARE_LICENSE = BSD-3-Clause

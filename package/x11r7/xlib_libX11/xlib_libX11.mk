@@ -3,7 +3,7 @@
 # xlib_libX11
 #
 ################################################################################
-# batocera - bump
+# reglinux - bump
 XLIB_LIBX11_VERSION = 1.8.9
 XLIB_LIBX11_SOURCE = libX11-$(XLIB_LIBX11_VERSION).tar.xz
 XLIB_LIBX11_SITE = https://xorg.freedesktop.org/archive/individual/lib

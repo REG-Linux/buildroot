@@ -3,7 +3,7 @@
 # fontconfig
 #
 ################################################################################
-# batocera - update
+# reglinux - update
 FONTCONFIG_VERSION = 2.15.0
 FONTCONFIG_SITE = https://www.freedesktop.org/software/fontconfig/release
 FONTCONFIG_SOURCE = fontconfig-$(FONTCONFIG_VERSION).tar.xz

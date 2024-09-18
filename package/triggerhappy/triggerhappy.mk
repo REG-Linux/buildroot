@@ -36,7 +36,7 @@ endef
 
 define TRIGGERHAPPY_INSTALL_INIT_SYSV
 	$(INSTALL) -m 0755 -D package/triggerhappy/S10triggerhappy \
-		$(TARGET_DIR)/etc/init.d/S50triggerhappy # S50 on batocera
+		$(TARGET_DIR)/etc/init.d/S10triggerhappy
 endef
 
 define TRIGGERHAPPY_INSTALL_INIT_SYSTEMD

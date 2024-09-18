@@ -3,7 +3,7 @@
 # xapp_xeyes
 #
 ################################################################################
-# batocera - update
+# reglinux - update
 XAPP_XEYES_VERSION = 1.3.0
 XAPP_XEYES_SOURCE = xeyes-$(XAPP_XEYES_VERSION).tar.xz
 XAPP_XEYES_SITE = https://xorg.freedesktop.org/archive/individual/app

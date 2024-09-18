@@ -36,10 +36,9 @@ define SEATD_USERS
 	- - seat -1 - - - - -
 endef
 
-# batocera - Seatd needs to be active before Weston launches
 define SEATD_INSTALL_INIT_SYSV
 	$(INSTALL) -m 0755 -D $(SEATD_PKGDIR)/S70seatd \
-		$(TARGET_DIR)/etc/init.d/S03seatd
+		$(TARGET_DIR)/etc/init.d/S70seatd
 endef
 
 define SEATD_INSTALL_INIT_SYSTEMD
