@@ -207,4 +207,10 @@ define BLUEZ5_UTILS_INSTALL_INIT_SYSV
 		$(TARGET_DIR)/etc/init.d/S40bluetoothd
 endef
 
+define BLUEZ5_UTILS_INSTALL_TARGET_CMDS
+	mkdir -p $(TARGET_DIR)/etc/dbus-1/system.d
+	$(INSTALL) -m 0644 -D package/bluez5_utils/bluetooth.conf \
+		$(TARGET_DIR)/etc/dbus-1/system.d/bluetooth.conf
+endef
+
 $(eval $(autotools-package))
