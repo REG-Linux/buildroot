@@ -3,8 +3,8 @@
 # rpi-firmware
 #
 ################################################################################
-# reglinux (update) - Aligns to kernel version: 6.6.54
-RPI_FIRMWARE_VERSION = a205a326f01a90ab70ca3181e79fa0dea93f5aa2
+# reglinux (update) - Aligns to kernel version: 6.6.56
+RPI_FIRMWARE_VERSION = de0f03dd9c1893785d0303797bac63fdded8b17a
 RPI_FIRMWARE_SITE = $(call github,raspberrypi,firmware,$(RPI_FIRMWARE_VERSION))
 RPI_FIRMWARE_LICENSE = BSD-3-Clause
 RPI_FIRMWARE_LICENSE_FILES = boot/LICENCE.broadcom
