@@ -61,6 +61,10 @@ config BR2_KERNEL_HEADERS_6_10
 	bool "Linux 6.10.x kernel headers"
 	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_10
 
+config BR2_KERNEL_HEADERS_6_11
+	bool "Linux 6.11.x kernel headers"
+	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_11
+
 config BR2_KERNEL_HEADERS_VERSION
 	bool "Manually specified Linux version"
 	help
@@ -135,6 +139,10 @@ choice
 
 	  If your kernel headers are more recent than the latest version
 	  in the choice, then select the latest version.
+
+config BR2_PACKAGE_HOST_LINUX_HEADERS_CUSTOM_6_11
+	bool "6.11.x"
+	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_11
 
 config BR2_PACKAGE_HOST_LINUX_HEADERS_CUSTOM_6_10
 	bool "6.10.x"
@@ -438,6 +446,7 @@ config BR2_DEFAULT_KERNEL_HEADERS
 	default "6.1.112"	if BR2_KERNEL_HEADERS_6_1
 	default "6.6.56"	if BR2_KERNEL_HEADERS_6_6
 	default "6.10.14"	if BR2_KERNEL_HEADERS_6_10
+	default "6.11.3"	if BR2_KERNEL_HEADERS_6_11
 	default BR2_DEFAULT_KERNEL_VERSION if BR2_KERNEL_HEADERS_VERSION
 	default "custom"	if BR2_KERNEL_HEADERS_CUSTOM_TARBALL
 	default BR2_KERNEL_HEADERS_CUSTOM_REPO_VERSION \
