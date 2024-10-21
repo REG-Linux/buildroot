@@ -3,8 +3,8 @@
 # xserver_xorg-server
 #
 ################################################################################
-# reglinux bump - security fix
-XSERVER_XORG_SERVER_VERSION = 21.1.12
+
+XSERVER_XORG_SERVER_VERSION = 21.1.13
 XSERVER_XORG_SERVER_SOURCE = xorg-server-$(XSERVER_XORG_SERVER_VERSION).tar.gz
 XSERVER_XORG_SERVER_SITE = https://xorg.freedesktop.org/archive/individual/xserver
 XSERVER_XORG_SERVER_LICENSE = MIT

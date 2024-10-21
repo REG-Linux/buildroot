@@ -3,9 +3,9 @@
 # libopenssl
 #
 ################################################################################
-# reglinux (update)
-LIBOPENSSL_VERSION = 3.3.2
-LIBOPENSSL_SITE = https://www.openssl.org/source
+
+LIBOPENSSL_VERSION = 3.2.3
+LIBOPENSSL_SITE = https://github.com/openssl/openssl/releases/download/openssl-$(LIBOPENSSL_VERSION)
 LIBOPENSSL_SOURCE = openssl-$(LIBOPENSSL_VERSION).tar.gz
 LIBOPENSSL_LICENSE = Apache-2.0
 LIBOPENSSL_LICENSE_FILES = LICENSE.txt
