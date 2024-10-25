@@ -5,11 +5,9 @@
 ################################################################################
 
 # Keep the version and patches in sync with bluez5_utils-headers
-BLUEZ5_UTILS_VERSION = 5.77
+BLUEZ5_UTILS_VERSION = 5.78
 BLUEZ5_UTILS_SOURCE = bluez-$(BLUEZ5_UTILS_VERSION).tar.xz
 BLUEZ5_UTILS_SITE = $(BR2_KERNEL_MIRROR)/linux/bluetooth
-# 0001-configure.ac-Fix-disable-cups.patch
-BLUEZ5_UTILS_AUTORECONF = YES
 BLUEZ5_UTILS_INSTALL_STAGING = YES
 BLUEZ5_UTILS_LICENSE = GPL-2.0+, LGPL-2.1+
 BLUEZ5_UTILS_LICENSE_FILES = COPYING COPYING.LIB
@@ -69,15 +67,19 @@ endif
 ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_AUDIO),y)
 BLUEZ5_UTILS_CONF_OPTS += \
 	--enable-a2dp \
+	--enable-asha \
 	--enable-avrcp \
 	--enable-bap \
+	--enable-bass \
 	--enable-mcp \
 	--enable-vcp
 else
 BLUEZ5_UTILS_CONF_OPTS += \
 	--disable-a2dp \
+	--disable-asha \
 	--disable-avrcp \
 	--disable-bap \
+	--disable-bass \
 	--disable-mcp \
 	--disable-vcp
 endif
@@ -166,12 +168,6 @@ else
 BLUEZ5_UTILS_CONF_OPTS += --disable-deprecated
 endif
 
-# batocera : install btmgmt to change ssp
-define BLUEZ5_UTILS_INSTALL_BTMGMT
-	$(INSTALL) -D -m 0755 $(@D)/tools/btmgmt $(TARGET_DIR)/usr/bin/btmgmt
-endef
-BLUEZ5_UTILS_POST_INSTALL_TARGET_HOOKS += BLUEZ5_UTILS_INSTALL_BTMGMT
-
 # enable test
 ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_TEST),y)
 BLUEZ5_UTILS_CONF_OPTS += --enable-test
@@ -205,12 +201,6 @@ endif
 define BLUEZ5_UTILS_INSTALL_INIT_SYSV
 	$(INSTALL) -m 0755 -D package/bluez5_utils/S40bluetoothd \
 		$(TARGET_DIR)/etc/init.d/S40bluetoothd
-endef
-
-define BLUEZ5_UTILS_INSTALL_TARGET_CMDS
-	mkdir -p $(TARGET_DIR)/etc/dbus-1/system.d
-	$(INSTALL) -m 0644 -D package/bluez5_utils/bluetooth.conf \
-		$(TARGET_DIR)/etc/dbus-1/system.d/bluetooth.conf
 endef
 
 $(eval $(autotools-package))
