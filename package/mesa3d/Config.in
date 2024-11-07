@@ -419,22 +419,14 @@ comment "radeon vulkan depends on X.org and needs a glibc toolchain w/ headers >
 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
 		!BR2_TOOLCHAIN_USES_GLIBC || !BR2_PACKAGE_XORG7
 
-# batocera
-config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_BROADCOM
-	bool "Raspberry Pi 4 Vulkan driver"
-	depends on BR2_arm || BR2_aarch64
-	depends on BR2_TOOLCHAIN_HAS_SYNC_4 # libxshmfence
-	depends on BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 # memfd.h
-	depends on BR2_TOOLCHAIN_USES_GLIBC # ifunc, static_assert
+# reglinux
+config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_FREEDRENO
+	bool "Vulkan freedreno driver"
+	depends on BR2_aarch64
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4 # dri3/libxshmfence
 	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER
 	help
-	  Vulkan driver for Rasperry Pi 4 hardware.
-
-comment "broadcom vulkan needs a glibc toolchain w/ headers >= 3.17"
-	depends on BR2_arm || BR2_aarch64
-	depends on BR2_TOOLCHAIN_HAS_SYNC_4
-	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
-		!BR2_TOOLCHAIN_USES_GLIBC
+	  Vulkan freedreno driver.
 
 config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_PANFROST
 	bool "Midgard and Bifrost Vulkan driver"
