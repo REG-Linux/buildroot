@@ -381,8 +381,6 @@ config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_SWRAST
 	help
 	  Vulkan swrast driver.
 
-comment "Off-screen Rendering"
-
 # batocera
 config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_HASWELL
 	bool "Vulkan Haswell driver"
@@ -400,8 +398,6 @@ comment "intel haswell vulkan needs a glibc toolchain w/ headers >= 3.17"
 	depends on BR2_TOOLCHAIN_HAS_SYNC_4 || !BR2_PACKAGE_XORG7
 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
 		!BR2_TOOLCHAIN_USES_GLIBC
-
-comment "Off-screen Rendering"
 
 # batocera
 config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_AMD
@@ -423,8 +419,6 @@ comment "radeon vulkan depends on X.org and needs a glibc toolchain w/ headers >
 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
 		!BR2_TOOLCHAIN_USES_GLIBC || !BR2_PACKAGE_XORG7
 
-comment "Off-screen Rendering"
-
 # batocera
 config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_BROADCOM
 	bool "Raspberry Pi 4 Vulkan driver"
@@ -442,8 +436,6 @@ comment "broadcom vulkan needs a glibc toolchain w/ headers >= 3.17"
 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
 		!BR2_TOOLCHAIN_USES_GLIBC
 
-comment "Off-screen Rendering"
-
 config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_PANFROST
 	bool "Midgard and Bifrost Vulkan driver"
 	depends on BR2_arm || BR2_aarch64
@@ -460,7 +452,7 @@ comment "panfrost vulkan needs a glibc toolchain w/ headers >= 3.17"
 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
 		!BR2_TOOLCHAIN_USES_GLIBC
 
-comment "Off-screen Rendering"
+comment "supported video codec"
 
 config BR2_PACKAGE_MESA3D_VIDEO_CODEC_VC1DEC
 	bool "VC1DEC video codec support"
@@ -517,6 +509,8 @@ config BR2_PACKAGE_MESA3D_VIDEO_CODEC_VP9DEC
 	select BR2_PACKAGE_MESA3D_VIDEO_CODEC
 	help
 	  VP9 hardware decoding on supported hardware.
+
+comment "Off-screen Rendering"
 
 config BR2_PACKAGE_MESA3D_OSMESA_GALLIUM
 	bool "OSMesa (Gallium) library"
