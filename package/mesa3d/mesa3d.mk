@@ -84,9 +84,12 @@ MESA3D_CONF_OPTS += -Dintel-clc=system
 endif
 
 #REG: asahi needs libclc spirv-tools and host-spirv-llvm-translator
+#REG: specify extra binaries to cross-compile asahi clc
 ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
 MESA3D_DEPENDENCIES += host-qemu host-libclc libclc spirv-tools spirv-llvm-translator clang host-glslang #host-spirv-llvm-translator
+MESA3D_MESON_EXTRA_BINARIES += exe_wrapper='$(HOST_DIR)/bin/qemu-aarch64'
 endif
+
 
 ifeq ($(BR2_PACKAGE_MESA3D_NEEDS_ELFUTILS),y)
 MESA3D_DEPENDENCIES += elfutils
