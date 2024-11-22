@@ -4,7 +4,7 @@
 #
 ################################################################################
 # reglinux (update)
-MESA3D_VERSION = 24.2.7
+MESA3D_VERSION = 24.3.0
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
 
@@ -42,15 +42,15 @@ ifeq ($(BR2_PACKAGE_DIRECTX_HEADERS),y)
 MESA3D_DEPENDENCIES += directx-headers
 endif
 
-MESA3D_CONF_OPTS = \
-	-Dgallium-omx=disabled \
-	-Dpower8=disabled
+# REG : remove deperecated gallium-omx option
+MESA3D_CONF_OPTS = -Dpower8=disabled
 
+#REG : update
 ifeq ($(BR2_PACKAGE_MESA3D_DRIVER)$(BR2_PACKAGE_XORG7),yy)
-MESA3D_CONF_OPTS += -Ddri3=enabled
+#MESA3D_CONF_OPTS += -Ddri3=enabled
 MESA3D_DEPENDENCIES += xlib_libxshmfence host-glslang
-else
-MESA3D_CONF_OPTS += -Ddri3=disabled
+#else
+#MESA3D_CONF_OPTS += -Ddri3=disabled
 endif
 
 ifeq ($(BR2_PACKAGE_MESA3D_LLVM),y)
@@ -355,12 +355,12 @@ endif
 ifeq ($(BR2_PACKAGE_LIBGLVND),y)
 ifneq ($(BR2_PACKAGE_MESA3D_OPENGL_GLX)$(BR2_PACKAGE_MESA3D_OPENGL_EGL),)
 MESA3D_DEPENDENCIES += libglvnd
-MESA3D_CONF_OPTS += -Dglvnd=true
+MESA3D_CONF_OPTS += -Dglvnd=enabled
 else
-MESA3D_CONF_OPTS += -Dglvnd=false
+MESA3D_CONF_OPTS += -Dglvnd=disabled
 endif
 else
-MESA3D_CONF_OPTS += -Dglvnd=false
+MESA3D_CONF_OPTS += -Dglvnd=disabled
 endif
 
 $(eval $(meson-package))
