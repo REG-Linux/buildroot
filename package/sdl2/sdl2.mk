@@ -4,7 +4,8 @@
 #
 ################################################################################
 
-SDL2_VERSION = 2.30.8
+#REG: bump
+SDL2_VERSION = 2.30.9
 SDL2_SOURCE = SDL2-$(SDL2_VERSION).tar.gz
 SDL2_SITE = http://www.libsdl.org/release
 SDL2_LICENSE = Zlib
@@ -14,7 +15,7 @@ SDL2_CPE_ID_PRODUCT = simple_directmedia_layer
 SDL2_INSTALL_STAGING = YES
 SDL2_CONFIG_SCRIPTS = sdl2-config
 
-# batocera - Removed --disable-video-wayland and --disable-video-vulkan
+#REG: remove --disable-video-wayland and --disable-video-vulkan
 SDL2_CONF_OPTS += \
 	--disable-rpath \
 	--disable-arts \
