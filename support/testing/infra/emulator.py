@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: ISC
+
 import os
 
 import pexpect
@@ -5,7 +8,35 @@ import pexpect.replwrap
 
 import infra
 
-import os
+BR_PROMPT = '[BRTEST# '
+BR_CONTINUATION_PROMPT = '[BRTEST+ '
+
+
+def _repl_sh_child(child, orig_prompt, extra_init_cmd):
+    """Wrap the shell prompt to handle command output
+    Based on pexpect.replwrap._repl_sh() (ISC licensed)
+    https://github.com/pexpect/pexpect/blob/aa989594e1e413f45c18b26ded1783f7d5990fe5/pexpect/replwrap.py#L115
+    """
+
+    # If the user runs 'env', the value of PS1 will be in the output. To avoid
+    # replwrap seeing that as the next prompt, we'll embed the marker characters
+    # for invisible characters in the prompt; these show up when inspecting the
+    # environment variable, but not when bash displays the prompt.
+    non_printable_insert = '\\[\\]'
+    ps1 = BR_PROMPT[:5] + non_printable_insert + BR_PROMPT[5:]
+    ps2 = (BR_CONTINUATION_PROMPT[:5] + non_printable_insert +
+           BR_CONTINUATION_PROMPT[5:])
+    prompt_change = "PS1='{0}' PS2='{1}' PROMPT_COMMAND=''".format(ps1, ps2)
+    # Note: this will run various commands, each with the default timeout defined
+    # when qemu was spawned.
+    return pexpect.replwrap.REPLWrapper(
+            child,
+            orig_prompt,
+            prompt_change,
+            new_prompt=BR_PROMPT,
+            continuation_prompt=BR_CONTINUATION_PROMPT,
+            extra_init_cmd=extra_init_cmd
+        )
 
 
 class Emulator(object):

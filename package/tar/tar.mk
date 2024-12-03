@@ -16,6 +16,9 @@ TAR_CONF_ENV = LIBS=$(TARGET_NLS_LIBS)
 # 0003-tests-fix-LDADD.patch
 TAR_AUTORECONF = YES
 
+# The package is a dependency to ccache so ccache cannot be a dependency
+HOST_TAR_ADD_CCACHE_DEPENDENCY = NO
+
 # busybox installs in /bin, so we need tar to install as well in /bin
 # so that we don't end up with two different tar
 #
