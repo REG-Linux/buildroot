@@ -3,7 +3,7 @@
 # rust-bin
 #
 ################################################################################
-# REG - bump
+
 # When updating this version, check whether support/download/cargo-post-process
 # still generates the same archives.
 RUST_BIN_VERSION = 1.79.0

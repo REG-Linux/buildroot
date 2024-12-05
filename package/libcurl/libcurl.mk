@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBCURL_VERSION = 8.11.0
+LIBCURL_VERSION = 8.9.0
 LIBCURL_SOURCE = curl-$(LIBCURL_VERSION).tar.xz
 LIBCURL_SITE = https://curl.se/download
 LIBCURL_DEPENDENCIES = host-pkgconf \
@@ -194,6 +194,11 @@ LIBCURL_CONF_OPTS += \
 	--disable-tftp
 endif
 
+define LIBCURL_FIX_DOT_PC
+	printf 'Requires: openssl\n' >>$(@D)/libcurl.pc.in
+endef
+LIBCURL_POST_PATCH_HOOKS += $(if $(BR2_PACKAGE_LIBCURL_OPENSSL),LIBCURL_FIX_DOT_PC)
+
 ifeq ($(BR2_PACKAGE_LIBCURL_CURL),)
 define LIBCURL_TARGET_CLEANUP
 	rm -rf $(TARGET_DIR)/usr/bin/curl
@@ -201,7 +206,7 @@ endef
 LIBCURL_POST_INSTALL_TARGET_HOOKS += LIBCURL_TARGET_CLEANUP
 endif
 
-# batocera - removing host-libcurl causes dependency problem on pipewire
+# REGLinux - PCSX2 / VPINBALL / MANGOHUD
 HOST_LIBCURL_DEPENDENCIES = host-openssl
 HOST_LIBCURL_CONF_OPTS = \
 	--disable-manual \

@@ -20,3 +20,4 @@ LIBPCIACCESS_CONF_OPTS += -Dzlib=disabled
 endif
 
 $(eval $(meson-package))
+$(eval $(host-meson-package))

@@ -78,9 +78,6 @@ LINUX_DEPENDENCIES = \
 	$(BR2_MAKE_HOST_DEPENDENCY)
 LINUX_MAKE = $(BR2_MAKE)
 
-# Needed for Rust support
-LINUX_DEPENDENCIES += host-libcurl host-rustc host-rust-bindgen
-
 # The kernel CONFIG_EXTRA_FIRMWARE feature requires firmware files at build
 # time. Make sure they are available before the kernel builds.
 LINUX_DEPENDENCIES += \
@@ -166,7 +163,6 @@ endif
 LINUX_MAKE_FLAGS = \
 	HOSTCC="$(HOSTCC) $(subst -I/,-isystem /,$(subst -I /,-isystem /,$(HOST_CFLAGS))) $(HOST_LDFLAGS)" \
 	ARCH=$(KERNEL_ARCH) \
-	KCFLAGS="$(LINUX_CFLAGS)" \
 	INSTALL_MOD_PATH=$(TARGET_DIR) \
 	CROSS_COMPILE="$(TARGET_CROSS)" \
 	WERROR=0 \
@@ -188,12 +184,7 @@ endif
 # sanitize the arguments passed from user space in registers.
 # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=82435
 ifeq ($(BR2_TOOLCHAIN_GCC_AT_LEAST_8),y)
-LINUX_CFLAGS += -Wno-attribute-alias
-endif
-
-# Disable FDPIC if enabled by default in toolchain
-ifeq ($(BR2_BINFMT_FDPIC),y)
-LINUX_CFLAGS += -mno-fdpic
+LINUX_MAKE_ENV += KCFLAGS=-Wno-attribute-alias
 endif
 
 ifeq ($(BR2_LINUX_KERNEL_DTB_OVERLAY_SUPPORT),y)

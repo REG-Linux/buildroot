@@ -35,7 +35,7 @@ config BR2_PACKAGE_MESA3D_LLVM
 	depends on !BR2_TOOLCHAIN_HAS_GCC_BUG_64735 # std::shared_future
 	depends on !BR2_STATIC_LIBS
 	depends on BR2_USE_WCHAR # std::wstring
-	depends on BR2_HOST_GCC_AT_LEAST_7 
+	depends on BR2_HOST_GCC_AT_LEAST_7
 	select BR2_PACKAGE_LLVM
 
 comment "llvm support needs a toolchain w/ wchar, threads, C++, gcc >= 7, dynamic library, host gcc >= 7"
@@ -175,8 +175,6 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI
 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
 	select BR2_PACKAGE_MESA3D_OPENGL_EGL
 	select BR2_PACKAGE_MESA3D_LLVM
-	select BR2_PACKAGE_HOST_SPIRV_LLVM_TRANSLATOR
-	select BR2_PACKAGE_SPIRV_LLVM_TRANSLATOR
 	select BR2_PACKAGE_LIBCLC
 	select BR2_PACKAGE_CLANG
 	select BR2_PACKAGE_SPIRV_TOOLS
