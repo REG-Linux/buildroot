@@ -206,7 +206,7 @@ endef
 LIBCURL_POST_INSTALL_TARGET_HOOKS += LIBCURL_TARGET_CLEANUP
 endif
 
-# batocera - removing host-libcurl causes dependency problem on pipewire
+# REGLinux - PCSX2 / VPINBALL / MANGOHUD
 HOST_LIBCURL_DEPENDENCIES = host-openssl
 HOST_LIBCURL_CONF_OPTS = \
 	--disable-manual \

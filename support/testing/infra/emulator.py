@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: ISC
+
 import os
 
 import pexpect
@@ -137,6 +140,9 @@ class Emulator(object):
             self.qemu.expect("Password:")
             self.qemu.sendline(password)
 
+        self.connect_shell()
+
+    def connect_shell(self):
         extra_init_cmd = " && ".join([
             'export PAGER=cat',
             'dmesg -n 1',
