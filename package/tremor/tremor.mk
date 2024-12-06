@@ -3,9 +3,9 @@
 # tremor
 #
 ################################################################################
-
-TREMOR_VERSION = 7c30a66346199f3f09017a09567c6c8a3a0eedc8
-TREMOR_SITE = https://gitlab.xiph.org/xiph/tremor.git
+# reglinux - Xiph.org official repo not maintained for 7 years, does not build fine.
+TREMOR_VERSION = 91decb5f1b11a84a2157a6326d9135b22627024b
+TREMOR_SITE = https://github.com/sezero/tremor.git
 TREMOR_SITE_METHOD = git
 TREMOR_LICENSE = BSD-3-Clause
 TREMOR_LICENSE_FILES = COPYING
