@@ -175,13 +175,6 @@ config BR2_PACKAGE_FLUTTER_DYNAMIC_LAYOUTS_EXAMPLE
 	  flutter-dynamic-layouts was removed from flutter-packages
 	  as of commit e35f29177495131f0f598fc7ae1ffd74d89edf15.
 
-config BR2_KERNEL_HEADERS_6_9
-	bool "kernel headers version 6.9.x are no longer supported"
-	select BR2_LEGACY
-	help
-	  Version 6.9.x of the Linux kernel headers are no longer
-	  maintained upstream and are now removed.
-
 config BR2_x86_knightslanding
 	bool "knightslanding x86 architecture support dropped"
 	select BR2_LEGACY
@@ -294,13 +287,6 @@ config BR2_PACKAGE_VERSAL_FIRMWARE
 	help
 	  The versal-firmware package has been replaced by the more
 	  generic xilinx-prebuilt package.
-
-config BR2_KERNEL_HEADERS_6_8
-	bool "kernel headers version 6.8.x are no longer supported"
-	select BR2_LEGACY
-	help
-	  Version 6.8.x of the Linux kernel headers are no longer
-	  maintained upstream and are now removed.
 
 config BR2_TARGET_AT91BOOTSTRAP
 	bool "at91bootstrap removed"
