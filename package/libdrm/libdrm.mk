@@ -118,7 +118,7 @@ endif
 
 $(eval $(meson-package))
 
-# REG declare host package and make sure to enable intel
+# reglinux - declare host package and make sure to enable intel
 HOST_LIBDRM_CONF_OPTS += -Dintel=enabled
 HOST_LIBDRM_DEPENDENCIES += host-libpciaccess
 $(eval $(host-meson-package))

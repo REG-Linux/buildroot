@@ -413,7 +413,7 @@ define BUSYBOX_KCONFIG_FIXUP_CMDS
 	$(BUSYBOX_SET_INDIVIDUAL_BINARIES)
 endef
 
-# REGLinux
+# reglinux
 define BUSYBOX_INSTALL_SEEDRNG
 	cd $(TARGET_DIR)/bin && ln -sf /bin/busybox seedrng
 endef

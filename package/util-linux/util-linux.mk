@@ -304,7 +304,7 @@ endef
 UTIL_LINUX_POST_INSTALL_TARGET_HOOKS += UTIL_LINUX_INSTALL_PAMFILES
 endif
 
-# REGLinux
+# reglinux
 ifeq ($(BR2_PACKAGE_UTIL_LINUX_AGETTY),y)
 define UTIL_LINUX_GETTY_SYMLINK
 	ln -sf agetty $(TARGET_DIR)/sbin/getty

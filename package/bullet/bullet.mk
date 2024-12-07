@@ -15,7 +15,7 @@ BULLET_LICENSE_FILES = LICENSE.txt
 # https://github.com/bulletphysics/bullet3/issues/3143
 BULLET_CONF_OPTS = -DBUILD_UNIT_TESTS=OFF
 
-# REG enable double precision for bullet
+# reglinux - enable double precision for bullet
 BULLET_CONF_OPTS += -DUSE_DOUBLE_PRECISION=ON
 
 # extras needs dlfcn.h and NPTL (pthread_barrier_init)

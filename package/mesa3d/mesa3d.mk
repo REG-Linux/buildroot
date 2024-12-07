@@ -27,12 +27,12 @@ MESA3D_DEPENDENCIES = \
 	host-python3 \
 	host-python-pyyaml
 
-# REG : need building mesa3d host-side to get a working intel_clc compiler
+# reglinux - need building mesa3d host-side to get a working intel_clc compiler
 ifeq ($(BR2_x86_64),y)
 MESA3D_DEPENDENCIES += host-mesa3d
 endif
 
-# REG : need host-python-pycparser built for etnaviv
+# reglinux - need host-python-pycparser built for etnaviv
 ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ETNAVIV),y)
 MESA3D_DEPENDENCIES += host-python-pycparser
 endif
@@ -42,10 +42,10 @@ ifeq ($(BR2_PACKAGE_DIRECTX_HEADERS),y)
 MESA3D_DEPENDENCIES += directx-headers
 endif
 
-# REG : remove deperecated gallium-omx option
+# reglinux - remove deperecated gallium-omx option
 MESA3D_CONF_OPTS = -Dpower8=disabled
 
-#REG : update
+# reglinux - update
 ifeq ($(BR2_PACKAGE_MESA3D_DRIVER)$(BR2_PACKAGE_XORG7),yy)
 #MESA3D_CONF_OPTS += -Ddri3=enabled
 MESA3D_DEPENDENCIES += xlib_libxshmfence host-glslang
@@ -77,14 +77,14 @@ else
 MESA3D_CONF_OPTS += -Dgallium-opencl=disabled
 endif
 
-#REG: x86 builds require clang libclc and python-ply, rely on system (host) intel_clc
+# reglinux - x86 builds require clang libclc and python-ply, rely on system (host) intel_clc
 ifeq ($(BR2_x86_64),y)
 MESA3D_DEPENDENCIES += clang libclc host-clang host-libclc host-python-ply
 MESA3D_CONF_OPTS += -Dintel-clc=system
 endif
 
-#REG: asahi needs libclc spirv-tools
-#REG: specify extra binaries to cross-compile asahi clc
+# reglinux - asahi needs libclc spirv-tools
+# reglinux - specify extra binaries to cross-compile asahi clc
 ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI),y)
 MESA3D_DEPENDENCIES += host-qemu host-libclc libclc spirv-tools spirv-llvm-translator clang host-glslang
 MESA3D_MESON_EXTRA_BINARIES += exe_wrapper='$(HOST_DIR)/bin/qemu-aarch64'
@@ -115,7 +115,7 @@ MESA3D_CONF_OPTS += \
 	-Dgallium-xa=disabled
 endif
 
-# REG ditch legacy
+# reglinux - ditch legacy
 #ifeq ($(BR2_ARM_CPU_HAS_NEON),y)
 #MESA3D_CONF_OPTS += -Dgallium-vc4-neon=auto
 #else
@@ -146,7 +146,7 @@ MESA3D_GALLIUM_DRIVERS-$(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VIRGL)    += virgl
 MESA3D_GALLIUM_DRIVERS-$(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ZINK)     += zink
 # batocera - add d3d12
 MESA3D_GALLIUM_DRIVERS-$(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_D3D12)    += d3d12
-# REG: add asahi
+# reglinux -  add asahi
 MESA3D_GALLIUM_DRIVERS-$(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ASAHI)    += asahi
 # batocera - Vulkan Drivers
 MESA3D_VULKAN_DRIVERS-$(BR2_PACKAGE_MESA3D_VULKAN_DRIVER_INTEL)     += intel
@@ -365,7 +365,7 @@ endif
 
 $(eval $(meson-package))
 
-# REG we "just" need a native host intel_clc compiler
+# reglinux - we "just" need a native host intel_clc compiler
 HOST_MESA3D_DEPENDENCIES = host-wayland-protocols host-libdrm host-bison host-flex host-python-mako host-expat host-zlib host-python-ply host-python3 host-python-pyyaml
 HOST_MESA3D_CONF_OPTS = -Dvulkan-drivers=intel,intel_hasvk -Dintel-clc=enabled -Dinstall-intel-clc=true -Dplatforms= -Dgallium-drivers=swrast -Dglx=disabled -Dgallium-opencl=disabled
 $(eval $(host-meson-package))

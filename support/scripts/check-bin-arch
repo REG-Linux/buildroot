@@ -94,15 +94,15 @@ while read f; do
 	# batocera: support Compiling i386 code in x86_64 system - for 32-bit only emulators like pcsx2 and 32-bit wine support
 	elif [ "${arch}" = "Intel 80386" -a "${arch_name}" = "Advanced Micro Devices X86-64" ] ; then
 		printf 'NOTE: Detected Arch is x86_64 with i386 Userspace for file:\n"%s"\n\n' \
-		"${f}" 
-	# REG: support Compiling x86_64 code in aarch64 system - for emulating through box64, fex or qemu-user
+		"${f}"
+	# reglinux -  support Compiling x86_64 code in aarch64 system - for emulating through box64, fex or qemu-user
 	elif [ "${arch}" = "Advanced Micro Devices X86-64" -a "${arch_name}" = "AArch64" ] ; then
 		printf 'NOTE: Detected Arch is AArch64 with x86_64 Userspace for file:\n"%s"\n\n' \
-		"${f}" 
-	# REG: support Compiling x86_64 code in RISC-V 64 system - for emulating through box64, fex or qemu-user
+		"${f}"
+	# reglinux -  support Compiling x86_64 code in RISC-V 64 system - for emulating through box64, fex or qemu-user
 	elif [ "${arch}" = "Advanced Micro Devices X86-64" -a "${arch_name}" = "RISC-V" ] ; then
 		printf 'NOTE: Detected Arch is RISC-V with x86_64 Userspace for file:\n"%s"\n\n' \
-		"${f}" 
+		"${f}"
 	else
 		printf 'ERROR: architecture for "%s" is "%s", should be "%s"\n' \
 		       "${f}" "${arch}" "${arch_name}"

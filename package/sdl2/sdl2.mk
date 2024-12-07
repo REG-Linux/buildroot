@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-#REG: bump
+# reglinux - bump
 SDL2_VERSION = 2.30.9
 SDL2_SOURCE = SDL2-$(SDL2_VERSION).tar.gz
 SDL2_SITE = http://www.libsdl.org/release
@@ -15,7 +15,7 @@ SDL2_CPE_ID_PRODUCT = simple_directmedia_layer
 SDL2_INSTALL_STAGING = YES
 SDL2_CONFIG_SCRIPTS = sdl2-config
 
-#REG: remove --disable-video-wayland and --disable-video-vulkan
+# reglinux - remove --disable-video-wayland and --disable-video-vulkan
 SDL2_CONF_OPTS += \
 	--disable-rpath \
 	--disable-arts \
@@ -107,12 +107,12 @@ ifeq ($(BR2_PACKAGE_ROCKCHIP_RGA),y)
 SDL2_DEPENDENCIES += rockchip-rga
 endif
 
-# REG - RISC-V depend on custom mesa to enable wayland properly
+# reglinux - RISC-V depend on custom mesa to enable wayland properly
 ifeq ($(BR2_PACKAGE_IMG_GPU_POWERVR),y)
 SDL2_DEPENDENCIES += img-gpu-powervr img-mesa3d
 endif
 
-# REG - depend on mesa3d for kmsdrm (gbm+egl) if enabled
+# reglinux - depend on mesa3d for kmsdrm (gbm+egl) if enabled
 ifeq ($(BR2_PACKAGE_MESA3D),y)
 SDL2_DEPENDENCIES += mesa3d
 endif

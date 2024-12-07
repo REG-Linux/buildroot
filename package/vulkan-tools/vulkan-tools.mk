@@ -3,7 +3,7 @@
 # vulkan-tools
 #
 ################################################################################
-# REG: update
+# reglinux -  update
 VULKAN_TOOLS_VERSION = v1.3.296
 VULKAN_TOOLS_SITE = $(call github,KhronosGroup,Vulkan-Tools,$(VULKAN_TOOLS_VERSION))
 VULKAN_TOOLS_LICENSE = Apache-2.0

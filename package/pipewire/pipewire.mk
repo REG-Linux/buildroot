@@ -3,7 +3,7 @@
 # pipewire
 #
 ################################################################################
-# REG: update
+# reglinux -  update
 PIPEWIRE_VERSION = 1.0.9
 PIPEWIRE_SOURCE = pipewire-$(PIPEWIRE_VERSION).tar.bz2
 PIPEWIRE_SITE = https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/$(PIPEWIRE_VERSION)

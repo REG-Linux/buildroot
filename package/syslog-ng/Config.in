@@ -8,8 +8,6 @@ config BR2_PACKAGE_SYSLOG_NG
 	select BR2_PACKAGE_JSON_C
 	select BR2_PACKAGE_LIBGLIB2
 	select BR2_PACKAGE_PCRE2
-	#batocera add jit
-	select BR2_PACKAGE_PCRE2_JIT
 	select BR2_PACKAGE_OPENSSL
 	help
 	  syslog-ng is an enhanced log daemon, supporting a wide range

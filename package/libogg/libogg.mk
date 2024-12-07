@@ -13,5 +13,4 @@ LIBOGG_LICENSE_FILES = COPYING
 LIBOGG_INSTALL_STAGING = YES
 LIBOGG_DEPENDENCIES = host-pkgconf
 
-# batocera - use cmake
-$(eval $(cmake-package))
+$(eval $(autotools-package))

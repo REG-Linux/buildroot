@@ -13,7 +13,7 @@ FLAC_LICENSE = Xiph BSD-like (libFLAC), GPL-2.0+ (tools), LGPL-2.1+ (other libra
 FLAC_LICENSE_FILES = COPYING.Xiph COPYING.GPL COPYING.LGPL
 FLAC_CPE_ID_VALID = YES
 
-# REG : libFLAC crash on GCC 13 -O3
+# reglinux - libFLAC crash on GCC 13 -O3
 FLAC_CONF_ENV = CFLAGS="-O2"
 
 FLAC_CONF_OPTS = \
