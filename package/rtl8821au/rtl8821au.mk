@@ -19,8 +19,7 @@ endef
 
 RTL8821AU_MODULE_MAKE_OPTS = \
 	CONFIG_RTL8812AU_8821AU=m \
-# reglinux: setting KVER breaks top level parallelization
-	# KVER=$(LINUX_VERSION_PROBED)
+	KVER=$(LINUX_VERSION_PROBED) \
 	USER_EXTRA_CFLAGS="-DCONFIG_$(call qstrip,$(BR2_ENDIAN))_ENDIAN \
 		-Wno-error"
 

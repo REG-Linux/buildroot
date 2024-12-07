@@ -3,7 +3,7 @@
 # wlroots
 #
 ################################################################################
-# REG (update)
+# reglinux - (update)
 WLROOTS_VERSION = 0.17.4
 WLROOTS_SITE = https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/$(WLROOTS_VERSION)/downloads
 WLROOTS_LICENSE = MIT

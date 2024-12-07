@@ -3,7 +3,7 @@
 # spirv-tools
 #
 ################################################################################
-# REG : 1.3.296.0 needed to build spirv-llvm-translator
+# reglinux - 1.3.296.0 needed to build spirv-llvm-translator
 SPIRV_TOOLS_VERSION = 1.3.296.0
 SPIRV_TOOLS_SITE = $(call github,KhronosGroup,SPIRV-Tools,vulkan-sdk-$(SPIRV_TOOLS_VERSION))
 SPIRV_TOOLS_LICENSE = Apache-2.0

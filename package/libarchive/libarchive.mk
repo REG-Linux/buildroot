@@ -16,11 +16,11 @@ LIBARCHIVE_AUTORECONF = YES
 # needed for autoreconf
 LIBARCHIVE_DEPENDENCIES += host-pkgconf
 
-#REG
+# reglinux
 LIBARCHIVE_CONF_OPTS += --disable-bsdunzip
 
 ifeq ($(BR2_PACKAGE_LIBARCHIVE_BSDTAR),y)
-#REG
+# reglinux
 #ifeq ($(BR2_STATIC_LIBS),y)
 #LIBARCHIVE_CONF_OPTS += --enable-bsdtar=static
 #else
@@ -31,7 +31,7 @@ LIBARCHIVE_CONF_OPTS += --disable-bsdtar
 endif
 
 ifeq ($(BR2_PACKAGE_LIBARCHIVE_BSDCPIO),y)
-#REG
+# reglinux
 #ifeq ($(BR2_STATIC_LIBS),y)
 #LIBARCHIVE_CONF_OPTS += --enable-bsdcpio=static
 #else
@@ -42,7 +42,7 @@ LIBARCHIVE_CONF_OPTS += --disable-bsdcpio
 endif
 
 ifeq ($(BR2_PACKAGE_LIBARCHIVE_BSDCAT),y)
-#REG
+# reglinux
 #ifeq ($(BR2_STATIC_LIBS),y)
 #LIBARCHIVE_CONF_OPTS += --enable-bsdcat=static
 #else
@@ -164,7 +164,7 @@ else
 LIBARCHIVE_CONF_OPTS += --without-zstd
 endif
 
-# REG fix building with musl
+# reglinux - fix building with musl
 ifeq ($(BR2_TOOLCHAIN_USES_MUSL),y)
 LIBARCHIVE_CONF_ENV += LIBS="-latomic"
 endif
