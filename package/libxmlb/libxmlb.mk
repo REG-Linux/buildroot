@@ -33,4 +33,8 @@ else
 LIBXMLB_CONF_OPTS += -Dlzma=disabled
 endif
 
+# reglinux - appstream dependency
+HOST_LIBXMLB_CONF_OPTS = -Dgtkdoc=false -Dtests=false -Dstemmer=false -Dcli=false -Dlzma=enabled -Dzstd=enabled
+
 $(eval $(meson-package))
+$(eval $(host-meson-package))
