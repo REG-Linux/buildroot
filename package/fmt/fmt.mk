@@ -3,8 +3,8 @@
 # fmt
 #
 ################################################################################
-
-FMT_VERSION = 11.0.2
+# reglinux - version 11.x.y with bug affecting citron emulator build
+FMT_VERSION = 10.2.1
 FMT_SITE = https://github.com/fmtlib/fmt/releases/download/$(FMT_VERSION)
 FMT_SOURCE = fmt-$(FMT_VERSION).zip
 FMT_LICENSE = MIT with exception
