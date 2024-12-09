@@ -87,13 +87,17 @@ while read f; do
 		continue
 	fi
 
-	# batocera: support Compiling arm64 in arm userspace - will eventually want to update to verify kernel is 64bit
+	# reglinux: support Compiling arm64 in arm userspace - will eventually want to update to verify kernel is 64bit
 	if [ "${arch}" = "AArch64" -a "${arch_name}" = "ARM" ] ; then
 		printf 'NOTE: Detected Arch is AArch64 with ARM Userspace for file:\n"%s"\n\n' \
 		"${f}"
-	# batocera: support Compiling i386 code in x86_64 system - for 32-bit only emulators like pcsx2 and 32-bit wine support
+	# reglinux: support Compiling i386 code in x86_64 system - for 32-bit only emulators like pcsx2 and 32-bit wine support
 	elif [ "${arch}" = "Intel 80386" -a "${arch_name}" = "Advanced Micro Devices X86-64" ] ; then
 		printf 'NOTE: Detected Arch is x86_64 with i386 Userspace for file:\n"%s"\n\n' \
+		"${f}"
+	# reglinux: support Compiling i386 code in arm system - for 32-bit only emulators like box86
+	elif [ "${arch}" = "Intel 80386" -a "${arch_name}" = "ARM" ] ; then
+		printf 'NOTE: Detected Arch is ARM with i386 Userspace for file:\n"%s"\n\n' \
 		"${f}"
 	# reglinux -  support Compiling x86_64 code in aarch64 system - for emulating through box64, fex or qemu-user
 	elif [ "${arch}" = "Advanced Micro Devices X86-64" -a "${arch_name}" = "AArch64" ] ; then
