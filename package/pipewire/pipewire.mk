@@ -3,8 +3,8 @@
 # pipewire
 #
 ################################################################################
-# reglinux -  update
-PIPEWIRE_VERSION = 1.0.9
+# reglinux - update
+PIPEWIRE_VERSION = 1.2.7
 PIPEWIRE_SOURCE = pipewire-$(PIPEWIRE_VERSION).tar.bz2
 PIPEWIRE_SITE = https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/$(PIPEWIRE_VERSION)
 PIPEWIRE_LICENSE = MIT, LGPL-2.1+ (libspa-alsa), GPL-2.0 (libjackserver)
@@ -13,7 +13,7 @@ PIPEWIRE_INSTALL_STAGING = YES
 PIPEWIRE_DEPENDENCIES = host-pkgconf $(TARGET_NLS_DEPENDENCIES)
 PIPEWIRE_LDFLAGS = $(TARGET_NLS_LIBS)
 
-# batocera - no session manager
+# reglinux - no session manager
 # we use the wireplumber package
 PIPEWIRE_CONF_OPTS += \
 	-Ddocs=disabled \
@@ -36,10 +36,10 @@ PIPEWIRE_CONF_OPTS += \
 	-Davb=disabled \
 	-Dlibcanberra=disabled
 
-# batocera
+# reglinux
 PIPEWIRE_CONF_OPTS += --wrap-mode=default
 
-# batocera
+# reglinux
 ifeq ($(BR2_PACKAGE_FLATPAK),y)
 PIPEWIRE_CONF_OPTS += -Dflatpak=enabled
 else
@@ -110,6 +110,24 @@ PIPEWIRE_CONF_OPTS += -Dpipewire-jack=enabled -Djack=enabled
 PIPEWIRE_DEPENDENCIES += jack2
 else
 PIPEWIRE_CONF_OPTS += -Dpipewire-jack=disabled -Djack=disabled
+endif
+
+# reglinux
+ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS)$(BR2_PACKAGE_LIBFREEAPTX),yy)
+PIPEWIRE_CONF_OPTS += -Dbluez5-codec-aptx=enabled
+PIPEWIRE_DEPENDENCIES += bluez5_utils libfreeaptx
+endif
+
+# reglinux
+ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS)$(BR2_PACKAGE_LIBLDAC),yy)
+PIPEWIRE_CONF_OPTS += -Dbluez5-codec-ldac=enabled
+PIPEWIRE_DEPENDENCIES += bluez5_utils libldac
+endif
+
+# reglinux
+ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS)$(BR2_PACKAGE_LIBLC3),yy)
+PIPEWIRE_CONF_OPTS += -Dbluez5-codec-lc3=enabled
+PIPEWIRE_DEPENDENCIES += bluez5_utils liblc3
 endif
 
 ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS)$(BR2_PACKAGE_SBC),yy)
@@ -190,7 +208,7 @@ else
 PIPEWIRE_CONF_OPTS += -Dlibusb=disabled
 endif
 
-# batocera
+# reglinux
 ifeq ($(BR2_PACKAGE_MESA3D_VULKAN_DRIVER)$(BR2_PACKAGE_VULKAN_LOADER),yy)
 PIPEWIRE_CONF_OPTS += -Dvulkan=enabled
 PIPEWIRE_DEPENDENCIES += mesa3d vulkan-loader
@@ -226,7 +244,7 @@ else
 PIPEWIRE_CONF_OPTS += -Dreadline=disabled
 endif
 
-# batocera
+# reglinux
 #ifeq ($(BR2_PACKAGE_SDL2),y)
 #PIPEWIRE_DEPENDENCIES += sdl2
 #PIPEWIRE_CONF_OPTS += -Dsdl2=enabled
