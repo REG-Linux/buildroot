@@ -3,9 +3,8 @@
 # wireplumber
 #
 ################################################################################
-# batocera - bump (patch removed)
-# don't upgrade to 0.4.81 until this comment removed
-WIREPLUMBER_VERSION = 0.4.17
+# reglinux - update
+WIREPLUMBER_VERSION = 0.5.7
 WIREPLUMBER_SOURCE = wireplumber-$(WIREPLUMBER_VERSION).tar.bz2
 WIREPLUMBER_SITE = https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/$(WIREPLUMBER_VERSION)
 WIREPLUMBER_LICENSE = MIT
