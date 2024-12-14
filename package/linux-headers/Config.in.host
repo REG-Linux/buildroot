@@ -3,7 +3,7 @@ comment "Kernel Header Options"
 choice
 	prompt "Kernel Headers"
 	default BR2_KERNEL_HEADERS_AS_KERNEL if BR2_LINUX_KERNEL
-	default BR2_KERNEL_HEADERS_6_10
+	default BR2_KERNEL_HEADERS_6_12
 	help
 	  Select the kernel version to get headers from.
 
@@ -52,19 +52,6 @@ config BR2_KERNEL_HEADERS_6_8
 	bool "Linux 6.8.x kernel headers"
 	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_8
 
-config BR2_KERNEL_HEADERS_6_9
-	bool "Linux 6.9.x kernel headers"
-	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_9
-
-config BR2_KERNEL_HEADERS_6_10
-	bool "Linux 6.10.x kernel headers"
-	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_10
-
-config BR2_KERNEL_HEADERS_6_11
-	bool "Linux 6.11.x kernel headers"
-	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_11
-
-# reglinux latest is 6.12
 config BR2_KERNEL_HEADERS_6_12
 	bool "Linux 6.12.x kernel headers"
 	select BR2_TOOLCHAIN_HEADERS_AT_LEAST_6_12
@@ -448,10 +435,10 @@ endchoice
 
 config BR2_DEFAULT_KERNEL_HEADERS
 	string
-	default "4.19.323"	if BR2_KERNEL_HEADERS_4_19
-	default "5.4.285"	if BR2_KERNEL_HEADERS_5_4
-	default "5.10.229"	if BR2_KERNEL_HEADERS_5_10
-	default "5.15.171"	if BR2_KERNEL_HEADERS_5_15
+	default "4.19.325"	if BR2_KERNEL_HEADERS_4_19
+	default "5.4.286"	if BR2_KERNEL_HEADERS_5_4
+	default "5.10.230"	if BR2_KERNEL_HEADERS_5_10
+	default "5.15.173"	if BR2_KERNEL_HEADERS_5_15
 	default "6.1.119"	if BR2_KERNEL_HEADERS_6_1
 	default "6.6.64"	if BR2_KERNEL_HEADERS_6_6
 	default "6.12.4"	if BR2_KERNEL_HEADERS_6_12
