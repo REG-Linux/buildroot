@@ -126,4 +126,7 @@ menu "Host utilities"
 	source "package/zip/Config.in.host"
 	source "package/zstd/Config.in.host"
 
+	# REG
+	source "package/python-pyelftools/Config.in.host"
+	source "package/python-pylibfdt/Config.in.host"
 endmenu
