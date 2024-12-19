@@ -4,7 +4,8 @@
 #
 ################################################################################
 
-STELLA_VERSION = 6.7.1
+#REGLINUX update
+STELLA_VERSION = 7.0
 STELLA_SOURCE = stella-$(STELLA_VERSION)-src.tar.xz
 STELLA_SITE = https://github.com/stella-emu/stella/releases/download/$(STELLA_VERSION)
 STELLA_LICENSE = GPL-2.0+
