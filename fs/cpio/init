@@ -29,6 +29,7 @@ do_update_modules() {
         then
             mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
+        touch /boot_root/REG_UPDATE
         mount -o remount,ro /boot_root || return 1
     fi
 }
@@ -44,6 +45,7 @@ do_update_firmware() {
         then
             mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
+        touch /boot_root/REG_UPDATE
         mount -o remount,ro /boot_root || return 1
     fi
 }
@@ -59,6 +61,7 @@ do_update_rootfs() {
         then
             mv /boot_root/boot/overlay /boot_root/boot/overlay.old || return 1
         fi
+        touch /boot_root/REG_UPDATE
         mount -o remount,ro /boot_root || return 1
     fi
 }
