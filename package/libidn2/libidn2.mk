@@ -31,3 +31,5 @@ LIBIDN2_LICENSE += , GPL-3.0+ (program)
 endif
 
 $(eval $(autotools-package))
+# REG add host package
+$(eval $(host-autotools-package))
