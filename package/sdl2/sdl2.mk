@@ -34,8 +34,6 @@ SDL2_CONF_OPTS += \
 	--disable-directx \
 	--disable-xinput \
 	--disable-wasapi \
-	--disable-hidapi-joystick \
-	--disable-hidapi-libusb \
 	--disable-joystick-virtual \
 	--disable-render-d3d
 
@@ -98,9 +96,6 @@ SDL2_POST_INSTALL_STAGING_HOOKS += SDL2_FIX_SDL2_CONFIG_CMAKE
 
 # We must enable static build to get compilation successful.
 SDL2_CONF_OPTS += --enable-static
-
-# batocera - disable hidapi
-SDL2_CONF_OPTS += --disable-hidapi
 
 # batocera - Used in screen rotation (SDL and Retroarch)
 ifeq ($(BR2_PACKAGE_ROCKCHIP_RGA),y)
