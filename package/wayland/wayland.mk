@@ -3,7 +3,7 @@
 # wayland
 #
 ################################################################################
-# reglinux - (update)
+
 WAYLAND_VERSION = 1.23.1
 WAYLAND_SITE = https://gitlab.freedesktop.org/wayland/wayland/-/releases/$(WAYLAND_VERSION)/downloads
 WAYLAND_SOURCE = wayland-$(WAYLAND_VERSION).tar.xz
