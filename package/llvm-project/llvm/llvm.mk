@@ -16,6 +16,11 @@ LLVM_INSTALL_STAGING = YES
 HOST_LLVM_DEPENDENCIES = host-python3 host-llvm-cmake
 LLVM_DEPENDENCIES = host-llvm
 
+# REG add this to build LLVMgold.so
+#~/dev/REG-Linux/output/x86_64/host/usr/lib/gcc/x86_64-buildroot-linux-gnu/13.3.0/plugin/include/
+HOST_LLVM_CONF_OPTS += -DLLVM_BINUTILS_INCDIR=$(HOST_DIR)/usr/lib/gcc/$(BR2_ARCH)-buildroot-linux-gnu/$(BR2_GCC_VERSION)/plugin/include
+#LLVM_CONF_OPTS += -DLLVM_BINUTILS_INCDIR=$(STAGING_DIR)/usr/lib/gcc/$(BR2_arch)-buildroot-linux-gnu/$(GCC_VERSION)/plugin/include
+
 # Path to cmake modules from host-llvm-cmake
 HOST_LLVM_CONF_OPTS += -DCMAKE_MODULE_PATH=$(HOST_DIR)/lib/cmake/llvm
 LLVM_CONF_OPTS += -DCMAKE_MODULE_PATH=$(HOST_DIR)/lib/cmake/llvm
