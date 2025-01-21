@@ -4,7 +4,6 @@
 #
 ################################################################################
 
-# REG
 LIBSOUNDTOUCH_VERSION = 2.3.3
 LIBSOUNDTOUCH_SOURCE = soundtouch-$(LIBSOUNDTOUCH_VERSION).tar.gz
 LIBSOUNDTOUCH_SITE = https://www.surina.net/soundtouch
