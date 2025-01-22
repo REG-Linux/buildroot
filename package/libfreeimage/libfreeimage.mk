@@ -30,6 +30,9 @@ ifeq ($(BR2_ARM_CPU_ARMV8A),y)
 	LIBFREEIMAGE_CFLAGS=$(TARGET_CFLAGS) -DPNG_ARM_NEON_OPT=0
 endif
 
+# REG fix GCC 14
+LIBFREEIMAGE_CFLAGS += -Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types
+
 define LIBFREEIMAGE_BUILD_CMDS
 	$(TARGET_MAKE_ENV) $(TARGET_CONFIGURE_OPTS) CFLAGS="$(LIBFREEIMAGE_CFLAGS)" \
 		CXXFLAGS="$(TARGET_CXXFLAGS) -std=c++11" $(MAKE) -C $(@D)
