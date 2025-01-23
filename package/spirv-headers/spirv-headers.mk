@@ -3,8 +3,8 @@
 # spirv-headers
 #
 ################################################################################
-# reglinux - 1.3.296.0 to build spirv-llvm-translator
-SPIRV_HEADERS_VERSION = 1.3.296.0
+# reglinux - 1.4.304.0 to build spirv-llvm-translator
+SPIRV_HEADERS_VERSION = 1.4.304.0
 SPIRV_HEADERS_SITE = $(call github,KhronosGroup,SPIRV-Headers,vulkan-sdk-$(SPIRV_HEADERS_VERSION))
 SPIRV_HEADERS_LICENSE = MIT
 SPIRV_HEADERS_LICENSE_FILES = LICENSE
