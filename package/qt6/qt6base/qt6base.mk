@@ -85,11 +85,11 @@ HOST_QT6BASE_DEPENDENCIES = \
 	host-libb2 \
 	host-pcre2 \
 	host-zlib
-# batocera - gui, concurrent, sql, testlib & network = ON for other Qt6 packages
+# REGLINUX gui, concurrent, sql, testlib & network = ON for other Qt6 packages
 HOST_QT6BASE_CONF_OPTS = \
-	-DFEATURE_concurrent=OFF \
+	-DFEATURE_concurrent=ON \
 	-DFEATURE_xml=ON \
-	-DFEATURE_dbus=OFF \
+	-DFEATURE_dbus=ON \
 	-DFEATURE_icu=OFF \
 	-DFEATURE_glib=OFF \
 	-DFEATURE_system_doubleconversion=ON \
@@ -102,6 +102,7 @@ HOST_QT6BASE_CONF_OPTS = \
 # We need host-qt6base with Gui support when building host-qt6shadertools,
 # otherwise the build is skipped and no qsb host tool is generated.
 # qt6shadertools fail to build if qsb is not available.
+# REGLINUX enable printsupport and widgets for build
 ifeq ($(BR2_PACKAGE_HOST_QT6BASE_GUI),y)
 HOST_QT6BASE_CONF_OPTS += \
 	-DFEATURE_gui=ON \
@@ -114,10 +115,10 @@ HOST_QT6BASE_CONF_OPTS += \
 	-DFEATURE_png=OFF \
 	-DFEATURE_gif=OFF \
 	-DFEATURE_jpeg=OFF \
-	-DFEATURE_printsupport=OFF \
+	-DFEATURE_printsupport=ON \
 	-DFEATURE_kms=OFF \
 	-DFEATURE_fontconfig=OFF \
-	-DFEATURE_widgets=OFF \
+	-DFEATURE_widgets=ON \
 	-DFEATURE_libinput=OFF \
 	-DFEATURE_tslib=OFF \
 	-DFEATURE_eglfs=OFF
