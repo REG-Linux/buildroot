@@ -4,7 +4,11 @@
 #
 ################################################################################
 # reglinux (update)
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3588),y)
+MESA3D_VERSION = 25.0.0-rc1
+else
 MESA3D_VERSION = 24.3.4
+endif
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
 
