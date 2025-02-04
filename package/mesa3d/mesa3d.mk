@@ -4,7 +4,7 @@
 #
 ################################################################################
 # reglinux (update)
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3588),y)
+ifeq ($(BR2_PACKAGE_REGLINUX_VULKAN),y)
 MESA3D_VERSION = 25.0.0-rc1
 else
 MESA3D_VERSION = 24.3.4
