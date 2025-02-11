@@ -130,4 +130,5 @@ menu "Host utilities"
 	# REG
 	source "package/python-pyelftools/Config.in.host"
 	source "package/python-pylibfdt/Config.in.host"
+	source "package/python-setuptools-scm/Config.in.host"
 endmenu
