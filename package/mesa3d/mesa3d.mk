@@ -4,11 +4,7 @@
 #
 ################################################################################
 # reglinux (update)
-ifeq ($(BR2_PACKAGE_REGLINUX_VULKAN),y)
-MESA3D_VERSION = 25.0.0-rc2
-else
-MESA3D_VERSION = 24.3.4
-endif
+MESA3D_VERSION = 25.0.0-rc3
 MESA3D_SOURCE = mesa-$(MESA3D_VERSION).tar.xz
 MESA3D_SITE = https://archive.mesa3d.org
 
