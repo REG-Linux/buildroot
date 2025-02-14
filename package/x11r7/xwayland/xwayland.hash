@@ -1,6 +1,7 @@
-# From https://lists.x.org/archives/xorg-announce/2024-April/003498.html
-sha256  33ec7ff2687a59faaa52b9b09aa8caf118e7ecb6aed8953f526a625ff9f4bd90  xwayland-23.2.5.tar.xz
-sha512  8cf90d51db7c4c7e8191b5919e6529fe577bc735bb1d00fbc0139cb67ef95d30eb56c2026f3b2f639745c6a621b33bbd60f9ebabdd12175148dd192393ce1169  xwayland-23.2.5.tar.xz
+# reglinux bump
+# From https://lists.x.org/archives/xorg-announce/2024-May/003514.html
+sha256  769e5133929ca4a4141d8e8d34dbbceea1dceaa93cf7a0b90ad7e76965e40055  xwayland-23.2.7.tar.xz
+sha512  d78bd1ffed5a8149c55b453a464e46d2d658169bb814a96b8b75119349ba5506bb9d5c131c3ff28d94b4a27db894963b8f039b89843a0164d4463d7015d74c1b  xwayland-23.2.7.tar.xz
 
 # Locally calculated
 sha256  4cc0447a22635c7b2f1a93fec4aa94f1970fadeb72a063de006b51cf4963a06f  COPYING

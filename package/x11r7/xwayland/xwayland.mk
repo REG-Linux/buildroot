@@ -4,14 +4,16 @@
 #
 ################################################################################
 # reglinux bump - security fix
-XWAYLAND_VERSION = 23.2.5
+XWAYLAND_VERSION = 23.2.7
 XWAYLAND_SOURCE = xwayland-$(XWAYLAND_VERSION).tar.xz
 XWAYLAND_SITE = https://xorg.freedesktop.org/archive/individual/xserver
 XWAYLAND_LICENSE = MIT
 XWAYLAND_LICENSE_FILES = COPYING
 XWAYLAND_CPE_ID_VENDOR = x.org
 XWAYLAND_INSTALL_STAGING = YES
+# reglinux depend on mesa3d
 XWAYLAND_DEPENDENCIES = \
+	mesa3d \
 	libdrm \
 	pixman \
 	wayland \
@@ -23,6 +25,7 @@ XWAYLAND_DEPENDENCIES = \
 	xlib_libxshmfence \
 	xlib_xtrans \
 	xorgproto
+# reglinux add -Dxwayland_eglstream=false
 XWAYLAND_CONF_OPTS = \
 	-Ddri3=true \
 	-Dxwayland_eglstream=false \
