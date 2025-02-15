@@ -11,9 +11,7 @@ XWAYLAND_LICENSE = MIT
 XWAYLAND_LICENSE_FILES = COPYING
 XWAYLAND_CPE_ID_VENDOR = x.org
 XWAYLAND_INSTALL_STAGING = YES
-# reglinux depend on mesa3d
 XWAYLAND_DEPENDENCIES = \
-	mesa3d \
 	libdrm \
 	pixman \
 	wayland \
@@ -33,6 +31,13 @@ XWAYLAND_CONF_OPTS = \
 	-Ddefault_font_path=/usr/share/fonts/X11/ \
 	-Ddtrace=false \
 	-Ddocs=false
+# reglinux add mesa3d or img-mesa3d (PowerVR)
+ifeq ($(BR2_PACKAGE_MESA3D),y)
+XWAYLAND_DEPENDENCIES += mesa3d
+endif
+ifeq ($(BR2_PACKAGE_IMG_MESA3D),y)
+XWAYLAND_DEPENDENCIES += img-mesa3d
+endif
 
 ifeq ($(BR2_PACKAGE_LIBEPOXY),y)
 XWAYLAND_CONF_OPTS += -Dglamor=true
