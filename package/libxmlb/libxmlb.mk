@@ -33,8 +33,9 @@ else
 LIBXMLB_CONF_OPTS += -Dlzma=disabled
 endif
 
+$(eval $(meson-package))
+
 # reglinux - appstream dependency
 HOST_LIBXMLB_CONF_OPTS = -Dgtkdoc=false -Dtests=false -Dstemmer=false -Dcli=false -Dlzma=enabled -Dzstd=enabled
-
-$(eval $(meson-package))
+HOST_LIBXMLB_DEPENDENCIES = host-libglib2
 $(eval $(host-meson-package))
