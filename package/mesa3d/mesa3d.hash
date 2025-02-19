@@ -1,6 +1,5 @@
 # reglinux update
-sha256  c344fb7c2ab56bc0b2c0edf4b08efe35d8aa02343173e4f4cbe9652cd72bd477  mesa-25.0.0-rc3.tar.xz
-# From https://docs.mesa3d.org/relnotes/24.3.4.html
-sha256  e641ae27191d387599219694560d221b7feaa91c900bcec46bf444218ed66025  mesa-24.3.4.tar.xz
+# From https://docs.mesa3d.org/relnotes/25.0.0.html
+sha256  96a53501fd59679654273258c6c6a1055a20e352ee1429f0b123516c7190e5b0  mesa-25.0.0.tar.xz
 # License
 sha256  a00275a53178e2645fb65be99a785c110513446a5071ff2c698ed260ad917d75  docs/license.rst
