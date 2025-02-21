@@ -4,7 +4,8 @@
 #
 ################################################################################
 
-ZSTD_VERSION = 1.5.6
+# REGLINUX bump (1.5.7 brings major performance improvements)
+ZSTD_VERSION = 1.5.7
 ZSTD_SITE = https://github.com/facebook/zstd/releases/download/v$(ZSTD_VERSION)
 ZSTD_INSTALL_STAGING = YES
 ZSTD_LICENSE = BSD-3-Clause or GPL-2.0
